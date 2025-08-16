@@ -16,6 +16,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Evita el scroll mientras el telón está activo */
         }
         .glass-effect {
             background: rgba(255, 255, 255, 0.05);
@@ -23,46 +24,71 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* Estilos para la pantalla de carga */
-        #loader {
+        
+        /* --- ESTILOS PARA EL TELÓN --- */
+        #curtain-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #111827; /* bg-gray-900 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease-out;
+            z-index: 9999;
+            overflow: hidden;
         }
-        #padlock {
-            width: 128px;
-            height: 128px;
-            cursor: pointer;
-            transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
-        #padlock:active {
-            transform: scale(0.9);
-        }
-        .particle {
+        .curtain {
             position: absolute;
-            background: #67E8F9; /* cyan-300 */
-            border-radius: 50%;
-            pointer-events: none;
-            animation: explode 0.7s ease-out forwards;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #8B0000; /* Rojo oscuro de telón */
+            background-image: linear-gradient(to right, rgba(0,0,0,0.2), transparent, rgba(0,0,0,0.2));
+            transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
         }
-        @keyframes explode {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: scale(0) translate(var(--x), var(--y));
-            }
+        #curtain-left {
+            left: 0;
         }
+        #curtain-right {
+            right: 0;
+        }
+        #curtain-left.open {
+            transform: translateX(-100%);
+        }
+        #curtain-right.open {
+            transform: translateX(100%);
+        }
+
+        /* --- ESTILOS PARA LA CUERDA --- */
+        #rope-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 1s ease-in-out;
+        }
+        #rope-container.pulled {
+            transform: translate(-50%, -100%);
+        }
+        #rope {
+            width: 5px;
+            height: 100%;
+            background-color: #DAA520; /* Dorado */
+            box-shadow: 1px 0 5px rgba(0,0,0,0.5);
+        }
+        #tassel {
+            width: 40px;
+            height: 60px;
+            background-color: #DAA520;
+            border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px;
+            position: relative;
+            top: -5px;
+        }
+
         /* Ocultar el contenido principal al inicio */
         #main-content {
             visibility: hidden;
@@ -73,10 +99,14 @@
 </head>
 <body class="bg-gray-900 text-white antialiased">
 
-    <!-- Pantalla de Carga con Candado -->
-    <div id="loader">
-        <img id="padlock" src="https://image.flaticon.com/icons/png/512/98/98049.png" alt="Candado" 
-             onerror="this.onerror=null;this.src='https://placehold.co/128x128/111827/FFFFFF?text=Candado';">
+    <!-- =========== PANTALLA DE TELÓN =========== -->
+    <div id="curtain-screen">
+        <div id="curtain-left" class="curtain"></div>
+        <div id="curtain-right" class="curtain"></div>
+        <div id="rope-container">
+            <div id="rope"></div>
+            <div id="tassel"></div>
+        </div>
     </div>
 
     <div id="main-content">
@@ -139,11 +169,11 @@
                     <p class="text-gray-400 max-w-2xl mx-auto mb-8">Estoy disponible para comisiones y abierto a colaborar en proyectos interesantes.</p>
                     <div class="flex justify-center items-center space-x-6">
                         <a href="mailto:tuemail@example.com" class="flex items-center space-x-2 text-lg text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                             <span>tuemail@example.com</span>
                         </a>
                         <span class="flex items-center space-x-2 text-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
                             <span>TuUsuario#1234</span>
                         </span>
                     </div>
@@ -156,81 +186,76 @@
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const loader = document.getElementById('loader');
-            const padlock = document.getElementById('padlock');
+        document.addEventListener('DOMContentLoaded', function() {
             const mainContent = document.getElementById('main-content');
             const music = document.getElementById('background-music');
-            let clickCount = 0;
+            const curtainScreen = document.getElementById('curtain-screen');
+            const curtainLeft = document.getElementById('curtain-left');
+            const curtainRight = document.getElementById('curtain-right');
+            const ropeContainer = document.getElementById('rope-container');
+            
+            ropeContainer.addEventListener('click', () => {
+                openCurtains();
+            }, { once: true });
 
-            const createParticle = (x, y) => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 10 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
-                const angle = Math.random() * 360;
-                const distance = Math.random() * 150 + 50;
-                const translateX = Math.cos(angle) * distance;
-                const translateY = Math.sin(angle) * distance;
-                particle.style.setProperty('--x', `${translateX}px`);
-                particle.style.setProperty('--y', `${translateY}px`);
-                loader.appendChild(particle);
-                setTimeout(() => particle.remove(), 700);
-            };
+            function openCurtains() {
+                ropeContainer.classList.add('pulled');
+                curtainLeft.classList.add('open');
+                curtainRight.classList.add('open');
+                
+                playMusicWithFadeIn();
 
-            padlock.addEventListener('click', (e) => {
-                clickCount++;
-                if (clickCount >= 2) {
-                    // Crear explosión de partículas
-                    for (let i = 0; i < 30; i++) {
-                        createParticle(e.clientX, e.clientY);
-                    }
-                    
-                    // Ocultar candado y loader
-                    padlock.style.display = 'none';
-                    loader.style.opacity = '0';
-                    setTimeout(() => loader.style.display = 'none', 500);
-
-                    // Mostrar contenido principal
+                setTimeout(() => {
                     mainContent.style.visibility = 'visible';
                     mainContent.style.opacity = '1';
+                    document.body.style.overflow = 'auto';
                     
-                    // Iniciar música
-                    music.play().catch(e => console.log("El navegador bloqueó la reproducción automática."));
-                    
-                    // Actualizar ícono del botón de música
-                    document.getElementById('play-icon').classList.add('hidden');
-                    document.getElementById('pause-icon').classList.remove('hidden');
+                    curtainLeft.addEventListener('transitionend', () => {
+                        curtainScreen.remove();
+                    }, { once: true });
 
-                    // Cargar avatar de Roblox
-                    fetchRobloxAvatar();
-                }
-            });
+                    fetchRobloxAvatar('1078236215');
+                }, 500);
+            }
 
-            const fetchRobloxAvatar = async () => {
-                const userId = '1078236215';
+            function playMusicWithFadeIn() {
+                music.volume = 0;
+                music.play().catch(error => console.error("El navegador bloqueó la reproducción automática:", error));
+
+                let currentVolume = 0;
+                const targetVolume = 0.5;
+                const fadeAudioIn = setInterval(() => {
+                    if (currentVolume < targetVolume) {
+                        currentVolume += 0.025;
+                        if (currentVolume > targetVolume) currentVolume = targetVolume;
+                        music.volume = currentVolume;
+                    } else {
+                        clearInterval(fadeAudioIn);
+                    }
+                }, 100);
+            }
+
+            async function fetchRobloxAvatar(userId) {
                 const avatarImage = document.getElementById('roblox-avatar');
                 const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`;
                 const proxyUrl = 'https://api.allorigins.win/get?url=';
                 const apiUrl = proxyUrl + encodeURIComponent(originalApiUrl);
+
                 try {
                     const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error('Proxy response was not ok.');
+                    if (!response.ok) throw new Error('No se pudo obtener la respuesta del proxy.');
                     const proxyData = await response.json();
                     const robloxData = JSON.parse(proxyData.contents);
                     if (robloxData.data && robloxData.data.length > 0) {
                         avatarImage.src = robloxData.data[0].imageUrl;
                     } else {
-                        throw new Error('User not found or has no avatar.');
+                        throw new Error('Usuario no encontrado o sin avatar.');
                     }
                 } catch (error) {
-                    console.error('Error fetching avatar:', error);
-                    avatarImage.src = 'https://placehold.co/150x150/1F2937/E04D4D?text=Error';
+                    console.error('Error al obtener el avatar:', error);
+                    avatarImage.src = 'https://placehold.co/150x150/1F2739/E04D4D?text=Error';
                 }
-            };
+            }
 
             const toggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
@@ -248,5 +273,6 @@
             });
         });
     </script>
+
 </body>
 </html>
