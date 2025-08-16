@@ -33,9 +33,9 @@
     <!-- Botón para controlar la música -->
     <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-cyan-600/50 hover:bg-cyan-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
         <!-- Icono de Play (visible por defecto) -->
-        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
         <!-- Icono de Pause (oculto por defecto) -->
-        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
     </button>
 
 
@@ -52,8 +52,8 @@
                 </p>
             </div>
             <div class="mt-8 md:mt-0">
-                <!-- IMAGEN DE PERFIL ACTUALIZADA -->
-                <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-183F290FF8B1AE6E98CB509C16CC1A73-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="Avatar Roblox" class="rounded-full border-4 border-gray-700 shadow-lg w-[150px] h-[150px]">
+                <!-- La imagen se cargará dinámicamente con JavaScript -->
+                <img id="roblox-avatar" src="https://placehold.co/150x150/1F2937/FFFFFF?text=Cargando..." alt="Avatar Roblox" class="rounded-full border-4 border-gray-700 shadow-lg w-[150px] h-[150px]">
             </div>
         </header>
 
@@ -129,10 +129,6 @@
                         <span>TuUsuario#1234</span>
                     </span>
 
-                    <!-- Twitter / X -->
-                    <a href="https://twitter.com/tu_usuario" target="_blank" class="text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 2.8 3.2 3 5.2-1.4 1-2.8 1.8-4.2 2.4-1.3 1.5-2.8 2.8-4.5 3.8-2.5 1.5-5.2 2.5-8 2.5s-5.5-1-8-2.5c-1.7-1-3.2-2.3-4.5-3.8-1.4-.6-2.8-1.4-4.2-2.4 1.2-2 2.4-3.8 4-5.2C6.7 7.1 6 4.9 6 4s.7-2.1 2-3.4C10.3 2.1 12 4 12 4s1.7-1.9 3.7-3.4c2-.5 4.1.2 5.3 1.6z"/></svg>
-                    </a>
                 </div>
             </section>
         </main>
@@ -145,31 +141,56 @@
     </div>
 
     <script>
-        // Lógica para el botón de música
         window.addEventListener('DOMContentLoaded', (event) => {
+            
+            // --- LÓGICA PARA OBTENER EL AVATAR DE ROBLOX ---
+            const fetchRobloxAvatar = async () => {
+                const userId = '1078236215';
+                const avatarImage = document.getElementById('roblox-avatar');
+                
+                const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`;
+                const proxyUrl = 'https://api.allorigins.win/get?url=';
+                const apiUrl = proxyUrl + encodeURIComponent(originalApiUrl);
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error('No se pudo obtener la respuesta del proxy.');
+
+                    const proxyData = await response.json();
+                    const robloxData = JSON.parse(proxyData.contents);
+
+                    if (robloxData.data && robloxData.data.length > 0) {
+                        avatarImage.src = robloxData.data[0].imageUrl;
+                    } else {
+                        throw new Error('Usuario no encontrado o sin avatar.');
+                    }
+                } catch (error) {
+                    console.error('Error al obtener el avatar:', error);
+                    avatarImage.src = 'https://placehold.co/150x150/1F2937/E04D4D?text=Error';
+                }
+            };
+
+            // Llamamos a la función para obtener el avatar cuando la página carga
+            fetchRobloxAvatar();
+
+            // --- LÓGICA DE LA MÚSICA ---
             const music = document.getElementById('background-music');
             const toggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
 
-            // Intenta reproducir la música. La mayoría de los navegadores modernos
-            // bloquearán esto hasta que el usuario interactúe con la página.
             const playPromise = music.play();
-
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    // El autoplay funcionó.
                     playIcon.classList.add('hidden');
                     pauseIcon.classList.remove('hidden');
                 }).catch(error => {
-                    // El autoplay fue bloqueado por el navegador.
                     console.log("La reproducción automática fue bloqueada. Esperando interacción del usuario.");
                     playIcon.classList.remove('hidden');
                     pauseIcon.classList.add('hidden');
                 });
             }
 
-            // Control manual con el botón
             toggleButton.addEventListener('click', () => {
                 if (music.paused) {
                     music.play();
