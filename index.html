@@ -27,13 +27,13 @@
 </head>
 <body class="bg-gray-900 text-white antialiased">
 
-    <!-- Elemento de Audio con la nueva URL -->
-    <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
+    <!-- Elemento de Audio con atributo autoplay -->
+    <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop autoplay></audio>
 
     <!-- Botón para controlar la música -->
     <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-cyan-600/50 hover:bg-cyan-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
         <!-- Icono de Play (visible por defecto) -->
-        <svg id="play-icon" xmlns="http://www.w.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
         <!-- Icono de Pause (oculto por defecto) -->
         <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
     </button>
@@ -152,17 +152,20 @@
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
 
-            // Intenta reproducir la música automáticamente al cargar la página
+            // Intenta reproducir la música. La mayoría de los navegadores modernos
+            // bloquearán esto hasta que el usuario interactúe con la página.
             const playPromise = music.play();
+
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    // Autoplay funcionó
+                    // El autoplay funcionó.
                     playIcon.classList.add('hidden');
                     pauseIcon.classList.remove('hidden');
                 }).catch(error => {
-                    // Autoplay fue bloqueado, no hacemos nada.
-                    // El usuario puede iniciar la música manualmente.
-                    console.log("La reproducción automática fue bloqueada por el navegador.");
+                    // El autoplay fue bloqueado por el navegador.
+                    console.log("La reproducción automática fue bloqueada. Esperando interacción del usuario.");
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
                 });
             }
 
