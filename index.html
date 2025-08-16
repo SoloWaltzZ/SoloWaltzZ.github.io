@@ -23,174 +23,218 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* Estilos para la pantalla de carga */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111827; /* bg-gray-900 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        #padlock {
+            width: 128px;
+            height: 128px;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #padlock:active {
+            transform: scale(0.9);
+        }
+        .particle {
+            position: absolute;
+            background: #67E8F9; /* cyan-300 */
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explode 0.7s ease-out forwards;
+        }
+        @keyframes explode {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0) translate(var(--x), var(--y));
+            }
+        }
+        /* Ocultar el contenido principal al inicio */
+        #main-content {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white antialiased">
 
-    <!-- Elemento de Audio con atributo autoplay -->
-    <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop autoplay></audio>
+    <!-- Pantalla de Carga con Candado -->
+    <div id="loader">
+        <img id="padlock" src="https://image.flaticon.com/icons/png/512/98/98049.png" alt="Candado" 
+             onerror="this.onerror=null;this.src='https://placehold.co/128x128/111827/FFFFFF?text=Candado';">
+    </div>
 
-    <!-- Botón para controlar la música -->
-    <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-cyan-600/50 hover:bg-cyan-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
-        <!-- Icono de Play (visible por defecto) -->
-        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-        <!-- Icono de Pause (oculto por defecto) -->
-        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
-    </button>
+    <div id="main-content">
+        <!-- Elemento de Audio -->
+        <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
 
+        <!-- Botón para controlar la música -->
+        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-cyan-600/50 hover:bg-cyan-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+        </button>
 
-    <!-- Contenedor Principal -->
-    <div class="container mx-auto max-w-5xl px-6 py-12">
-
-        <!-- Encabezado y Presentación -->
-        <header class="flex flex-col md:flex-row items-center justify-between mb-16">
-            <div class="text-center md:text-left">
-                <h1 class="text-4xl md:text-5xl font-bold text-cyan-400">Tu Nombre de Usuario</h1>
-                <p class="mt-2 text-xl text-gray-300">Programador y Scripter de Roblox</p>
-                <p class="mt-4 max-w-lg text-gray-400">
-                    Apasionado por crear experiencias inmersivas y mecánicas de juego innovadoras en la plataforma de Roblox. ¡Transformando ideas en realidad virtual!
-                </p>
-            </div>
-            <div class="mt-8 md:mt-0">
-                <!-- La imagen se cargará dinámicamente con JavaScript -->
-                <img id="roblox-avatar" src="https://placehold.co/150x150/1F2937/FFFFFF?text=Cargando..." alt="Avatar Roblox" class="rounded-full border-4 border-gray-700 shadow-lg w-[150px] h-[150px]">
-            </div>
-        </header>
-
-        <main>
-            <!-- Sección de Proyectos -->
-            <section id="proyectos">
-                <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-cyan-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                    <!-- Proyecto 1 -->
-                    <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://i.imgur.com/8i25sLh.png" alt="Imagen del Proyecto 1" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 1</h3>
-                            <p class="mt-2 text-gray-400">
-                                Una breve descripción de tu juego o proyecto. Habla sobre el objetivo, las mecánicas principales o la tecnología que utilizaste.
-                            </p>
-                            <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
-                                Jugar en Roblox &rarr;
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 2 -->
-                    <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+2" alt="Imagen del Proyecto 2" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 2</h3>
-                            <p class="mt-2 text-gray-400">
-                                Describe este otro proyecto. ¿Fue un sistema de inventario, una IA para NPCs, un mapa complejo? Sé específico sobre tu contribución.
-                            </p>
-                            <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
-                                Ver en GitHub &rarr;
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 3 (Puedes añadir más) -->
-                    <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+3" alt="Imagen del Proyecto 3" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 3</h3>
-                            <p class="mt-2 text-gray-400">
-                                Otro ejemplo de tu trabajo. Puede ser una herramienta, un asset que creaste, o cualquier otra cosa que demuestre tus habilidades.
-                            </p>
-                            <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
-                                Jugar en Roblox &rarr;
-                            </a>
-                        </div>
-                    </div>
-
+        <!-- Contenedor Principal -->
+        <div class="container mx-auto max-w-5xl px-6 py-12">
+            <header class="flex flex-col md:flex-row items-center justify-between mb-16">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400">Tu Nombre de Usuario</h1>
+                    <p class="mt-2 text-xl text-gray-300">Programador y Scripter de Roblox</p>
+                    <p class="mt-4 max-w-lg text-gray-400">
+                        Apasionado por crear experiencias inmersivas y mecánicas de juego innovadoras en la plataforma de Roblox. ¡Transformando ideas en realidad virtual!
+                    </p>
                 </div>
-            </section>
-
-            <!-- Sección de Contacto -->
-            <section id="contacto" class="mt-20 text-center">
-                <h2 class="text-3xl font-bold mb-6">¿Hablamos?</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto mb-8">
-                    Estoy disponible para comisiones y abierto a colaborar en proyectos interesantes. Si tienes una idea o necesitas un programador, no dudes en contactarme.
-                </p>
-                
-                <div class="flex justify-center items-center space-x-6">
-                    <!-- Email -->
-                    <a href="mailto:tuemail@example.com" class="flex items-center space-x-2 text-lg text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span>tuemail@example.com</span>
-                    </a>
-                    
-                    <!-- Discord -->
-                    <span class="flex items-center space-x-2 text-lg">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-                        <span>TuUsuario#1234</span>
-                    </span>
-
+                <div class="mt-8 md:mt-0">
+                    <img id="roblox-avatar" src="https://placehold.co/150x150/1F2937/FFFFFF?text=Cargando..." alt="Avatar Roblox" class="rounded-full border-4 border-gray-700 shadow-lg w-[150px] h-[150px]">
                 </div>
-            </section>
-        </main>
+            </header>
 
-        <!-- Pie de página -->
-        <footer class="text-center text-gray-500 mt-20 border-t border-gray-800 pt-6">
-            <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
-        </footer>
-
+            <main>
+                <section id="proyectos">
+                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-cyan-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://i.imgur.com/8i25sLh.png" alt="Imagen del Proyecto 1" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 1</h3>
+                                <p class="mt-2 text-gray-400">Una breve descripción de tu juego o proyecto.</p>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+2" alt="Imagen del Proyecto 2" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 2</h3>
+                                <p class="mt-2 text-gray-400">Describe este otro proyecto.</p>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Ver en GitHub &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+3" alt="Imagen del Proyecto 3" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 3</h3>
+                                <p class="mt-2 text-gray-400">Otro ejemplo de tu trabajo.</p>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="contacto" class="mt-20 text-center">
+                    <h2 class="text-3xl font-bold mb-6">¿Hablamos?</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto mb-8">Estoy disponible para comisiones y abierto a colaborar en proyectos interesantes.</p>
+                    <div class="flex justify-center items-center space-x-6">
+                        <a href="mailto:tuemail@example.com" class="flex items-center space-x-2 text-lg text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span>tuemail@example.com</span>
+                        </a>
+                        <span class="flex items-center space-x-2 text-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                            <span>TuUsuario#1234</span>
+                        </span>
+                    </div>
+                </section>
+            </main>
+            <footer class="text-center text-gray-500 mt-20 border-t border-gray-800 pt-6">
+                <p>&copy; 2024 Tu Nombre. Todos los derechos reservados.</p>
+            </footer>
+        </div>
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            
-            // --- LÓGICA PARA OBTENER EL AVATAR DE ROBLOX ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('loader');
+            const padlock = document.getElementById('padlock');
+            const mainContent = document.getElementById('main-content');
+            const music = document.getElementById('background-music');
+            let clickCount = 0;
+
+            const createParticle = (x, y) => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                const angle = Math.random() * 360;
+                const distance = Math.random() * 150 + 50;
+                const translateX = Math.cos(angle) * distance;
+                const translateY = Math.sin(angle) * distance;
+                particle.style.setProperty('--x', `${translateX}px`);
+                particle.style.setProperty('--y', `${translateY}px`);
+                loader.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            };
+
+            padlock.addEventListener('click', (e) => {
+                clickCount++;
+                if (clickCount >= 2) {
+                    // Crear explosión de partículas
+                    for (let i = 0; i < 30; i++) {
+                        createParticle(e.clientX, e.clientY);
+                    }
+                    
+                    // Ocultar candado y loader
+                    padlock.style.display = 'none';
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+
+                    // Mostrar contenido principal
+                    mainContent.style.visibility = 'visible';
+                    mainContent.style.opacity = '1';
+                    
+                    // Iniciar música
+                    music.play().catch(e => console.log("El navegador bloqueó la reproducción automática."));
+                    
+                    // Actualizar ícono del botón de música
+                    document.getElementById('play-icon').classList.add('hidden');
+                    document.getElementById('pause-icon').classList.remove('hidden');
+
+                    // Cargar avatar de Roblox
+                    fetchRobloxAvatar();
+                }
+            });
+
             const fetchRobloxAvatar = async () => {
                 const userId = '1078236215';
                 const avatarImage = document.getElementById('roblox-avatar');
-                
                 const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`;
                 const proxyUrl = 'https://api.allorigins.win/get?url=';
                 const apiUrl = proxyUrl + encodeURIComponent(originalApiUrl);
-
                 try {
                     const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error('No se pudo obtener la respuesta del proxy.');
-
+                    if (!response.ok) throw new Error('Proxy response was not ok.');
                     const proxyData = await response.json();
                     const robloxData = JSON.parse(proxyData.contents);
-
                     if (robloxData.data && robloxData.data.length > 0) {
                         avatarImage.src = robloxData.data[0].imageUrl;
                     } else {
-                        throw new Error('Usuario no encontrado o sin avatar.');
+                        throw new Error('User not found or has no avatar.');
                     }
                 } catch (error) {
-                    console.error('Error al obtener el avatar:', error);
+                    console.error('Error fetching avatar:', error);
                     avatarImage.src = 'https://placehold.co/150x150/1F2937/E04D4D?text=Error';
                 }
             };
 
-            // Llamamos a la función para obtener el avatar cuando la página carga
-            fetchRobloxAvatar();
-
-            // --- LÓGICA DE LA MÚSICA ---
-            const music = document.getElementById('background-music');
             const toggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
-
-            const playPromise = music.play();
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    playIcon.classList.add('hidden');
-                    pauseIcon.classList.remove('hidden');
-                }).catch(error => {
-                    console.log("La reproducción automática fue bloqueada. Esperando interacción del usuario.");
-                    playIcon.classList.remove('hidden');
-                    pauseIcon.classList.add('hidden');
-                });
-            }
-
             toggleButton.addEventListener('click', () => {
                 if (music.paused) {
                     music.play();
@@ -204,6 +248,5 @@
             });
         });
     </script>
-
 </body>
 </html>
