@@ -32,12 +32,32 @@
             overflow: hidden; /* Evita el scroll mientras el telón está activo */
         }
         .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(239, 68, 68, 0.1); /* Rojo transparente */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
         
+        /* --- ESTILOS PARA EL VIDEO DE FONDO --- */
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Capa oscura semitransparente */
+            z-index: -1;
+        }
+
         /* --- ESTILOS PARA EL TELÓN --- */
         #curtain-screen {
             position: fixed;
@@ -110,7 +130,14 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white antialiased">
+<body class="bg-black text-white antialiased">
+
+    <!-- Video de Fondo y Capa Oscura -->
+    <div class="video-overlay"></div>
+    <video autoplay muted loop playsinline id="video-bg">
+        <source src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755374771/VIDEO_RELAJANTE_DEL_UNIVERSO._Relax_with_the_universe._4K_wgdmky.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+    </video>
 
     <!-- =========== PANTALLA DE TELÓN =========== -->
     <div id="curtain-screen">
@@ -127,7 +154,7 @@
         <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
 
         <!-- Botón para controlar la música -->
-        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-cyan-600/50 hover:bg-cyan-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
+        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-red-600/50 hover:bg-red-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
             <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
         </button>
@@ -136,7 +163,7 @@
         <div class="container mx-auto max-w-5xl px-6 py-12">
             <header class="flex flex-col md:flex-row items-center justify-between mb-16">
                 <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400">SoloWaltz</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-red-500">SoloWaltz</h1>
                     <p class="mt-2 text-xl text-gray-300">Scripter de Roblox</p>
                     <p class="mt-4 max-w-lg text-gray-400">
                         Apasionado por crear experiencias inmersivas y mecánicas de juego innovadoras en la plataforma de Roblox. ¡Transformando ideas en realidad virtual!
@@ -149,30 +176,30 @@
 
             <main>
                 <section id="proyectos">
-                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-cyan-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
+                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-red-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
                             <img src="https://i.imgur.com/8i25sLh.png" alt="Imagen del Proyecto 1" class="w-full h-48 object-cover">
                             <div class="p-6">
-                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 1</h3>
+                                <h3 class="text-2xl font-semibold text-red-500">Nombre del Proyecto 1</h3>
                                 <p class="mt-2 text-gray-400">Una breve descripción de tu juego o proyecto.</p>
-                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
                         <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
                             <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+2" alt="Imagen del Proyecto 2" class="w-full h-48 object-cover">
                             <div class="p-6">
-                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 2</h3>
+                                <h3 class="text-2xl font-semibold text-red-500">Nombre del Proyecto 2</h3>
                                 <p class="mt-2 text-gray-400">Describe este otro proyecto.</p>
-                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Ver en GitHub &rarr;</a>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Ver en GitHub &rarr;</a>
                             </div>
                         </div>
                         <div class="glass-effect rounded-xl overflow-hidden group transform hover:-translate-y-2 transition-transform duration-300">
                             <img src="https://placehold.co/600x400/1e293b/ffffff?text=Imagen+Proyecto+3" alt="Imagen del Proyecto 3" class="w-full h-48 object-cover">
                             <div class="p-6">
-                                <h3 class="text-2xl font-semibold text-cyan-400">Nombre del Proyecto 3</h3>
+                                <h3 class="text-2xl font-semibold text-red-500">Nombre del Proyecto 3</h3>
                                 <p class="mt-2 text-gray-400">Otro ejemplo de tu trabajo.</p>
-                                <a href="#" target="_blank" class="inline-block mt-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -181,7 +208,7 @@
                     <h2 class="text-3xl font-bold mb-6">¿Hablamos?</h2>
                     <p class="text-gray-400 max-w-2xl mx-auto mb-8">Estoy disponible para comisiones y abierto a colaborar en proyectos interesantes.</p>
                     <div class="flex justify-center items-center space-x-6">
-                        <a href="mailto:solowaltzscripts@gmail.com" class="flex items-center space-x-2 text-lg text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
+                        <a href="mailto:solowaltzscripts@gmail.com" class="flex items-center space-x-2 text-lg text-red-500 hover:text-red-400 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                             <span>solowaltzscripts@gmail.com</span>
                         </a>
@@ -248,8 +275,8 @@
                 }, 100);
             }
 
-            // --- FUNCIÓN DE AVATAR CON REINTENTOS ---
-            async function fetchRobloxAvatar(userId, retries = 3) {
+            // --- FUNCIÓN DE AVATAR CON REINTENTOS INDEFINIDOS ---
+            async function fetchRobloxAvatar(userId) {
                 const avatarImage = document.getElementById('roblox-avatar');
                 const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
                 const proxyUrl = 'https://api.allorigins.win/get?url=';
@@ -266,15 +293,10 @@
                         throw new Error('Usuario no encontrado o sin avatar.');
                     }
                 } catch (error) {
-                    console.error(`Error al obtener el avatar (intentos restantes: ${retries - 1}):`, error);
-                    if (retries > 1) {
-                        // Esperar 1 segundo antes de reintentar
-                        await new Promise(resolve => setTimeout(resolve, 1000));
-                        fetchRobloxAvatar(userId, retries - 1); // Volver a intentar
-                    } else {
-                        // Si no quedan reintentos, mostrar el error
-                        avatarImage.src = 'https://placehold.co/150x150/1F2739/E04D4D?text=Error';
-                    }
+                    console.error('Error al obtener el avatar, reintentando en 2 segundos...', error);
+                    // Esperar 2 segundos antes de reintentar indefinidamente
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    fetchRobloxAvatar(userId); // Volver a intentar
                 }
             }
 
