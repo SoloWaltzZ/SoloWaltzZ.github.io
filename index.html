@@ -32,10 +32,10 @@
             overflow: hidden; /* Evita el scroll mientras el telón está activo */
         }
         .glass-effect {
-            background: rgba(239, 68, 68, 0.1); /* Rojo transparente */
+            background: rgba(99, 102, 241, 0.1); /* Indigo transparente */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
         
         /* --- ESTILOS PARA EL VIDEO DE FONDO --- */
@@ -54,7 +54,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Capa oscura semitransparente */
+            background-color: rgba(17, 24, 39, 0.7); /* Capa oscura semitransparente */
             z-index: -1;
         }
 
@@ -73,7 +73,7 @@
             top: 0;
             width: 50%;
             height: 100%;
-            background-color: #8B0000; /* Rojo oscuro de telón */
+            background-color: #1e1b4b; /* Azul noche oscuro */
             background-image: linear-gradient(to right, rgba(0,0,0,0.2), transparent, rgba(0,0,0,0.2));
             transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
         }
@@ -110,13 +110,13 @@
         #rope {
             width: 5px;
             height: 100%;
-            background-color: #DAA520; /* Dorado */
-            box-shadow: 1px 0 5px rgba(0,0,0,0.5);
+            background-color: #f1f5f9; /* Color luna (slate-100) */
+            box-shadow: 1px 0 5px rgba(255,255,255,0.5);
         }
         #tassel {
             width: 40px;
             height: 60px;
-            background-color: #DAA520;
+            background-color: #f1f5f9;
             border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px;
             position: relative;
             top: -5px;
@@ -130,12 +130,12 @@
         }
     </style>
 </head>
-<body class="bg-black text-white antialiased">
+<body class="bg-gray-900 text-white antialiased">
 
     <!-- Video de Fondo y Capa Oscura -->
     <div class="video-overlay"></div>
     <video autoplay muted loop playsinline id="video-bg">
-        <source src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755374771/VIDEO_RELAJANTE_DEL_UNIVERSO._Relax_with_the_universe._4K_wgdmky.mp4" type="video/mp4">
+        <source src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755378339/No_Copyright_Videos___Moon___Copyright_Free___Motion_Graphics___Motion_Background___Free_Video_Stock_goi0wd.mp4" type="video/mp4">
         Tu navegador no soporta videos HTML5.
     </video>
 
@@ -154,7 +154,7 @@
         <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
 
         <!-- Botón para controlar la música -->
-        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-red-600/50 hover:bg-red-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
+        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-indigo-600/50 hover:bg-indigo-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
             <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
         </button>
@@ -163,17 +163,16 @@
         <div class="container mx-auto max-w-5xl px-6 py-12">
             <header class="flex flex-col md:flex-row items-center justify-between mb-16">
                 <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-red-500">SoloWaltz</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-indigo-400">SoloWaltz</h1>
                     <p class="mt-2 text-xl text-gray-300">Scripter de Roblox</p>
                     
-                    <!-- NUEVA SECCIÓN DE DESCRIPCIÓN CON SUBTÍTULOS -->
                     <div class="mt-6 max-w-lg space-y-4">
                         <div>
-                            <h4 class="text-lg font-semibold text-red-400 tracking-wider">Mecánicas & VFX</h4>
+                            <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Mecánicas & VFX</h4>
                             <p class="text-gray-300">Construyo mecánicas de juego y pulo la experiencia con efectos visuales (VFX). Convierto ideas en funcionalidades tangibles.</p>
                         </div>
                         <div>
-                            <h4 class="text-lg font-semibold text-red-400 tracking-wider">Disponibilidad</h4>
+                            <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Disponibilidad</h4>
                             <p class="text-gray-300">Abierto a comisiones.</p>
                         </div>
                     </div>
@@ -186,36 +185,36 @@
 
             <main>
                 <section id="proyectos">
-                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-red-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
+                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-indigo-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Proyecto 1 -->
                         <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                             <div class="p-6 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-2xl font-semibold text-red-500">Cazar</h3>
+                                    <h3 class="text-2xl font-semibold text-indigo-400">Cazar</h3>
                                     <p class="mt-2 text-gray-400">Un juego de plataformas en donde demuestro lo bien que se ven las partículas 3D.</p>
                                 </div>
-                                <a href="https://www.roblox.com/es/games/10457493046/cazar" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
+                                <a href="https://www.roblox.com/es/games/10457493046/cazar" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
                         <!-- Proyecto 2 -->
                         <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                             <div class="p-6 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-2xl font-semibold text-red-500">Sujetar Test</h3>
+                                    <h3 class="text-2xl font-semibold text-indigo-400">Sujetar Test</h3>
                                     <p class="mt-2 text-gray-400">Un juego que hice cuando todavía no dominaba en su totalidad el código.</p>
                                 </div>
-                                <a href="https://www.roblox.com/es/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
+                                <a href="https://www.roblox.com/es/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
                         <!-- Proyecto 3 -->
                         <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                            <div class="p-6 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-2xl font-semibold text-red-500">Test</h3>
+                                    <h3 class="text-2xl font-semibold text-indigo-400">Test</h3>
                                     <p class="mt-2 text-gray-400">Un juego hecho en una cuenta alternativa, intenté recrear un sueño que tuve.</p>
                                 </div>
-                                <a href="https://www.roblox.com/es/games/90646300024435/test" target="_blank" class="inline-block mt-4 bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
+                                <a href="https://www.roblox.com/es/games/90646300024435/test" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
                     </div>
@@ -224,12 +223,12 @@
                     <h2 class="text-3xl font-bold mb-6">¿Hablamos?</h2>
                     <p class="text-gray-400 max-w-2xl mx-auto mb-8">Estoy disponible para comisiones y abierto a colaborar en proyectos interesantes.</p>
                     <div class="flex justify-center items-center space-x-6">
-                        <a href="mailto:solowaltzscripts@gmail.com" class="flex items-center space-x-2 text-lg text-red-500 hover:text-red-400 transition-colors duration-300">
+                        <a href="mailto:solowaltzscripts@gmail.com" class="flex items-center space-x-2 text-lg text-indigo-400 hover:text-indigo-300 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                             <span>solowaltzscripts@gmail.com</span>
                         </a>
-                        <span class="flex items-center space-x-2 text-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                        <span class="flex items-center space-x-2 text-lg text-indigo-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.36981C18.7915 3.58342 17.1197 3.00049 15.3532 2.64844C15.2422 2.92344 15.1422 3.22344 15.0532 3.54844C13.3347 3.24844 11.6497 3.24844 9.95972 3.54844C9.87072 3.22344 9.77072 2.92344 9.65972 2.64844C7.89322 3.00049 6.22147 3.58342 4.69602 4.36981C1.57727 7.73481 0.742969 11.2483 1.23672 14.5918C2.88297 16.0173 4.78272 16.9903 6.79347 17.6598C7.11222 17.2018 7.39797 16.7103 7.64997 16.1853C7.02497 15.9433 6.43347 15.6493 5.89122 15.3133C6.03222 15.2133 6.16222 15.1023 6.28722 14.9853C9.79197 16.2048 13.2082 16.2048 16.713 14.9853C16.838 15.1023 16.968 15.2133 17.109 15.3133C16.5667 15.6493 15.9752 15.9433 15.3502 16.1853C15.6022 16.7103 15.888 17.2018 16.2067 17.6598C18.2175 16.9903 20.1172 16.0173 21.7635 14.5918C22.3215 10.9593 21.35 7.52331 20.317 4.36981ZM8.02047 12.4228C7.33122 12.4228 6.76197 11.8093 6.76197 11.0668C6.76197 10.3258 7.33122 9.71081 8.02047 9.71081C8.70972 9.71081 9.27897 10.3258 9.26797 11.0668C9.26797 11.8093 8.70972 12.4228 8.02047 12.4228ZM14.9797 12.4228C14.2905 12.4228 13.7212 11.8093 13.7212 11.0668C13.7212 10.3258 14.2905 9.71081 14.9797 9.71081C15.669 9.71081 16.2382 10.3258 16.2272 11.0668C16.2272 11.8093 15.669 12.4228 14.9797 12.4228Z"/></svg>
                             <span>dr_waltz</span>
                         </span>
                     </div>
