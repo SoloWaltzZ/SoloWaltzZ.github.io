@@ -223,7 +223,7 @@
                 music.play().catch(error => console.error("El navegador bloqueó la reproducción automática:", error));
 
                 let currentVolume = 0;
-                const targetVolume = 0.5;
+                const targetVolume = 0.2;
                 const fadeAudioIn = setInterval(() => {
                     if (currentVolume < targetVolume) {
                         currentVolume += 0.025;
@@ -276,6 +276,7 @@
 
 </body>
 </html>
+
 
 
 
