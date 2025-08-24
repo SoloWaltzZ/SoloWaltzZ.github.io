@@ -40,6 +40,12 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(99, 102, 241, 0.2);
         }
+        .glass-effect-gold {
+            background: rgba(217, 119, 6, 0.1); /* Amber/Gold transparente */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(217, 119, 6, 0.25);
+        }
         
         /* --- ESTILOS PARA EL VIDEO DE FONDO --- */
         #video-bg {
@@ -174,9 +180,10 @@
                             <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Mecánicas & VFX</h4>
                             <p class="text-gray-300">Construyo mecánicas de juego y pulo la experiencia con efectos visuales (VFX). Convierto ideas en funcionalidades tangibles.</p>
                         </div>
+                        <!-- SECCIÓN DE EXPERIENCIA AÑADIDA -->
                         <div>
                             <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Experiencia</h4>
-                            <p class="text-gray-300">Llevo aproximadamente 5 años creando experiencias en Roblox y he trabajado en diversos proyectos.</p>
+                            <p class="text-gray-300">Con aproximadamente 5 años creando experiencias en Roblox, he trabajado en diversos proyectos y perfeccionado mis habilidades.</p>
                         </div>
                         <div>
                             <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Disponibilidad</h4>
@@ -194,16 +201,18 @@
                 <section id="proyectos">
                     <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-indigo-500 pb-2 inline-block">Mis Proyectos Destacados</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Proyecto Nuevo (Estilo Dorado) -->
-                        <div class="bg-gradient-to-br from-yellow-500/10 to-amber-600/20 border border-yellow-400/20 backdrop-blur-lg rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
+                        
+                        <!-- Proyecto NUEVO -->
+                        <div class="glass-effect-gold rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                             <div class="p-6 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-2xl font-semibold text-amber-300">Juego sin nombre</h3>
-                                    <p class="mt-2 text-gray-300">Un juego más actual acorde a mis habilidades, aunque sigue siendo un experimento.</p>
+                                    <h3 class="text-2xl font-semibold text-amber-400">Juego sin nombre</h3>
+                                    <p class="mt-2 text-gray-400">Un juego más actual acorde a mis habilidades, aunque sigue siendo un experimento.</p>
                                 </div>
                                 <a href="https://www.roblox.com/es/games/13696371563/Juego-sin-nombre" target="_blank" class="inline-block mt-4 bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
                             </div>
                         </div>
+
                         <!-- Proyecto 1 -->
                         <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
                             <div class="p-6 flex-grow flex flex-col justify-between">
@@ -219,7 +228,7 @@
                             <div class="p-6 flex-grow flex flex-col justify-between">
                                 <div>
                                     <h3 class="text-2xl font-semibold text-indigo-400">Sujetar Test</h3>
-                                    <p class="mt-2 text-gray-400">Un juego que hice cuando todavía no dominaba el código en su totalidad.</p>
+                                    <p class="mt-2 text-gray-400">Un juego que hice cuando aún no dominaba el código en su totalidad.</p>
                                 </div>
                                 <a href="https://www.roblox.com/es/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Jugar en Roblox &rarr;</a>
                             </div>
@@ -306,32 +315,30 @@
             // --- FUNCIÓN DE AVATAR CON REINTENTOS ---
             async function fetchRobloxAvatar(userId) {
                 const avatarImage = document.getElementById('roblox-avatar');
-                // Using a proxy to bypass potential CORS issues from the Roblox API
-                const proxyUrl = 'https://api.allorigins.win/get?url=';
                 const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
+                // Usamos un proxy para evitar problemas de CORS
+                const proxyUrl = 'https://api.allorigins.win/get?url=';
                 const apiUrl = proxyUrl + encodeURIComponent(originalApiUrl);
 
                 try {
                     const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error('Network response was not ok.');
-                    
+                    if (!response.ok) throw new Error('No se pudo obtener la respuesta del proxy.');
                     const proxyData = await response.json();
-                    // The actual API response is in the 'contents' property
                     const robloxData = JSON.parse(proxyData.contents);
-
                     if (robloxData.data && robloxData.data.length > 0) {
                         avatarImage.src = robloxData.data[0].imageUrl;
                     } else {
-                        throw new Error('User not found or avatar data is unavailable.');
+                        throw new Error('Usuario no encontrado o sin avatar.');
                     }
                 } catch (error) {
-                    console.error('Failed to fetch Roblox avatar, retrying in 2 seconds...', error);
-                    // Wait 2 seconds before trying again
+                    console.error('Error al obtener el avatar, reintentando en 2 segundos...', error);
+                    // Esperar 2 segundos antes de reintentar
                     await new Promise(resolve => setTimeout(resolve, 2000));
-                    fetchRobloxAvatar(userId); // Recursive call to retry
+                    fetchRobloxAvatar(userId); // Volver a intentar
                 }
             }
 
+            // --- CONTROL DE MÚSICA ---
             const toggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
