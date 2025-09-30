@@ -6,9 +6,9 @@
     <title>SoloWaltz - Roblox Programmer</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>">
 
-    <!-- Open Graph Meta Tags for Link Previews -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="SoloWaltz - Roblox Programmer Portfolio">
     <meta property="og:description" content="Experimental and creative scripter, focused on bringing unique game mechanics and visual effects (VFX) to life on Roblox. Available for commissions.">
     <meta property="og:image" content="https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1078236215&size=420x420&format=Png&isCircular=false">
@@ -24,137 +24,144 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: VT323 for Retro Look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
     <style>
+        /* --- RETRO STYLE OVERHAUL --- */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevents scrolling while the curtain is active */
-        }
-        .glass-effect {
-            background: rgba(99, 102, 241, 0.1); /* Transparent Indigo */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-        .glass-effect-gold {
-            background: rgba(217, 119, 6, 0.1); /* Transparent Amber/Gold */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(217, 119, 6, 0.25);
-        }
-        
-        /* --- BACKGROUND VIDEO STYLES --- */
-        #video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-        }
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(17, 24, 39, 0.7); /* Semi-transparent dark overlay */
-            z-index: -1;
+            font-family: 'VT323', monospace;
+            background-color: #008080; /* Classic Windows Teal */
+            color: #000000;
+            overflow: hidden; /* Prevents scrolling while boot screen is active */
+            image-rendering: pixelated; /* Keep images sharp */
         }
 
-        /* --- CURTAIN STYLES --- */
-        #curtain-screen {
+        /* --- BOOT SCREEN (Curtain Replacement) --- */
+        #boot-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-color: #000;
+            color: #00FF00; /* Bright green text */
             z-index: 9999;
-            overflow: hidden;
-        }
-        .curtain {
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            background-color: #1e1b4b; /* Dark night blue */
-            background-image: linear-gradient(to right, rgba(0,0,0,0.2), transparent, rgba(0,0,0,0.2));
-            transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-        }
-        #curtain-left {
-            left: 0;
-        }
-        #curtain-right {
-            right: 0;
-        }
-        #curtain-left.open {
-            transform: translateX(-100%);
-        }
-        #curtain-right.open {
-            transform: translateX(100%);
-        }
-
-        /* --- ROPE STYLES --- */
-        #rope-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 60%;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: transform 1s ease-in-out;
+            transition: opacity 1s ease-out;
         }
-        #rope-container.pulled {
-            transform: translate(-50%, -100%);
+        .boot-text-container {
+            text-align: left;
+            white-space: pre;
+            font-size: 18px;
+            line-height: 1.4;
         }
-        #rope {
-            width: 5px;
-            height: 100%;
-            background-color: #f1f5f9; /* Moon color (slate-100) */
-            box-shadow: 1px 0 5px rgba(255,255,255,0.5);
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
         }
-        #tassel {
-            width: 40px;
-            height: 60px;
-            background-color: #f1f5f9;
-            border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px;
-            position: relative;
-            top: -5px;
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* --- Main Content Window --- */
+        .retro-window {
+            background-color: #C0C0C0; /* Classic grey */
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF; /* 3D effect */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            width: 100%;
+        }
+        .title-bar {
+            background-color: #000080; /* Dark blue */
+            color: #FFFFFF;
+            padding: 4px 8px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-bar-buttons { display: flex; gap: 4px; }
+        .title-bar-button {
+            width: 20px;
+            height: 20px;
+            background-color: #C0C0C0;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .window-content {
+            padding: 1rem;
+        }
+
+        /* --- Retro UI Elements --- */
+        .retro-card {
+            background-color: #C0C0C0;
+            border: 2px solid;
+            border-color: #808080 #FFFFFF #FFFFFF #808080; /* Inset effect */
+            padding: 1.5rem;
+        }
+        .retro-card-gold {
+            background-color: #c8bca2; /* A gold-ish grey */
+             border: 2px solid;
+            border-color: #a19374 #fefae0 #fefae0 #a19374; /* Inset gold effect */
+            padding: 1.5rem;
+        }
+
+        .retro-button {
+            background-color: #C0C0C0;
+            border: 2px solid;
+            border-color: #FFFFFF #808080 #808080 #FFFFFF;
+            padding: 6px 12px;
+            font-size: 18px;
+            box-shadow: 1px 1px 0px #000;
+            transition: all 0.1s ease;
+        }
+        .retro-button:active {
+            border-color: #808080 #FFFFFF #FFFFFF #808080;
+            box-shadow: -1px -1px 0px #000;
+            transform: translate(1px, 1px);
+        }
+
+        .retro-header {
+            font-size: 2rem;
+            border-bottom: 2px solid #808080;
+            border-right: 2px solid #808080;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
         /* Hide main content initially */
         #main-content {
             visibility: hidden;
             opacity: 0;
-            transition: opacity 0.5s ease-in;
+            transition: opacity 1s ease-in 0.5s;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white antialiased">
+<body class="antialiased">
 
-    <!-- Background Video and Dark Overlay -->
-    <div class="video-overlay"></div>
-    <video autoplay muted loop playsinline id="video-bg">
-        <source src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755378339/No_Copyright_Videos___Moon___Copyright_Free___Motion_Graphics___Motion_Background___Free_Video_Stock_goi0wd.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-
-    <!-- =========== CURTAIN SCREEN =========== -->
-    <div id="curtain-screen">
-        <div id="curtain-left" class="curtain"></div>
-        <div id="curtain-right" class="curtain"></div>
-        <div id="rope-container">
-            <div id="rope"></div>
-            <div id="tassel"></div>
+    <!-- =========== BOOT SCREEN =========== -->
+    <div id="boot-screen">
+        <div class="boot-text-container">
+            <span>SoloWaltz BIOS v1.995</span>
+            <span>Copyright (C) 1995, SoloWaltz Corp.</span>
+            <span></span>
+            <span>Initializing Portfolio Data... OK</span>
+            <span>Loading Roblox Scripter Module... OK</span>
+            <span>Checking Commission Status... AVAILABLE</span>
+            <span></span>
+            <span>All systems ready.</span>
+            <span></span>
+            <span>> Click or Press ENTER to continue<span class="blinking-cursor">_</span></span>
         </div>
     </div>
 
@@ -163,119 +170,121 @@
         <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
 
         <!-- Music Control Button -->
-        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 p-3 bg-indigo-600/50 hover:bg-indigo-500/80 rounded-full text-white backdrop-blur-sm transition-colors duration-300 shadow-lg">
-            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+        <button id="music-toggle" class="fixed bottom-5 right-5 z-50 retro-button">
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
         </button>
 
         <!-- Main Container -->
-        <div class="container mx-auto max-w-5xl px-6 py-12">
-            <header class="flex flex-col md:flex-row items-center justify-between mb-16">
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-indigo-400">SoloWaltz</h1>
-                    <p class="mt-2 text-xl text-gray-300">Roblox Scripter</p>
-                    
-                    <div class="mt-6 max-w-lg space-y-4">
-                        <div>
-                            <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Mechanics & VFX</h4>
-                            <p class="text-gray-300">I build game mechanics and polish the experience with visual effects (VFX). I turn ideas into tangible functionalities.</p>
-                        </div>
-                        <!-- ADDED EXPERIENCE SECTION -->
-                        <div>
-                            <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Experience</h4>
-                            <p class="text-gray-300">With approximately 5 years of creating experiences on Roblox, I have worked on various projects and honed my skills.</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold text-indigo-300 tracking-wider">Availability</h4>
-                            <p class="text-gray-300">Open for commissions.</p>
-                        </div>
+        <div class="container mx-auto max-w-5xl px-4 py-8 md:py-12">
+            <div class="retro-window">
+                <div class="title-bar">
+                    <span>SoloWaltz Portfolio - C:\USER\DATA.EXE</span>
+                    <div class="title-bar-buttons">
+                        <div class="title-bar-button">_</div>
+                        <div class="title-bar-button">□</div>
+                        <div class="title-bar-button">X</div>
                     </div>
-
                 </div>
-                <div class="mt-8 md:mt-0">
-                    <img id="roblox-avatar" src="https://placehold.co/150x150/1F2937/FFFFFF?text=Loading..." alt="Roblox Avatar" class="rounded-full border-4 border-gray-700 shadow-lg w-[150px] h-[150px]">
+                <div class="window-content">
+                     <header class="flex flex-col md:flex-row items-center justify-between mb-12">
+                        <div class="text-center md:text-left text-xl">
+                            <h1 class="text-5xl md:text-6xl">SoloWaltz</h1>
+                            <p class="mt-2 text-2xl">Roblox Scripter</p>
+                            
+                            <div class="mt-6 max-w-lg space-y-4 text-lg">
+                                <div>
+                                    <h4 class="font-bold tracking-wider underline">Mechanics & VFX</h4>
+                                    <p>I build game mechanics and polish the experience with visual effects (VFX). I turn ideas into tangible functionalities.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold tracking-wider underline">Experience</h4>
+                                    <p>With approx. 5 years of creating experiences on Roblox, I have honed my skills.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold tracking-wider underline">Availability</h4>
+                                    <p>Open for commissions.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mt-8 md:mt-0 flex-shrink-0">
+                             <div class="p-1" style="border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080;">
+                                <img id="roblox-avatar" src="https://placehold.co/150x150/C0C0C0/000000?text=...LOAD" alt="Roblox Avatar" class="w-[150px] h-[150px]">
+                            </div>
+                        </div>
+                    </header>
+
+                    <main>
+                        <section id="projects">
+                            <h2 class="retro-header">Featured Projects</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                
+                                <!-- Project -->
+                                <div class="retro-card-gold h-full flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-3xl font-bold">Untitled Game</h3>
+                                        <p class="mt-2 text-lg">A more current game, although it's still an experiment.</p>
+                                    </div>
+                                    <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                </div>
+
+                                <!-- Project -->
+                                <div class="retro-card h-full flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-3xl font-bold">Hunt</h3>
+                                        <p class="mt-2 text-lg">A platformer game where I showcase 3D particles.</p>
+                                    </div>
+                                    <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                </div>
+                                
+                                <!-- Project -->
+                                <div class="retro-card h-full flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-3xl font-bold">Grip Test</h3>
+                                        <p class="mt-2 text-lg">A game I made when I was learning to code.</p>
+                                    </div>
+                                    <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                </div>
+
+                                <!-- Project -->
+                                <div class="retro-card h-full flex flex-col justify-between">
+                                   <div>
+                                        <h3 class="text-3xl font-bold">Test</h3>
+                                        <p class="mt-2 text-lg">A game made to recreate a dream I had.</p>
+                                    </div>
+                                    <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="pricing" class="mt-16">
+                            <h2 class="retro-header">Commission Pricing</h2>
+                            <div class="retro-card max-w-md mx-auto p-8 text-center">
+                                <p class="text-xl mb-4">Rates are flexible and based on project complexity.</p>
+                                <div class="text-5xl font-bold my-4">
+                                    $5 - $20 USD
+                                </div>
+                                <p class="text-lg mt-2">Contact me with your idea for a specific quote.</p>
+                            </div>
+                        </section>
+
+                        <section id="contact" class="mt-16 text-center">
+                            <h2 class="retro-header">Contact</h2>
+                            <p class="text-xl max-w-2xl mx-auto mb-8">Available for commissions and collaborations.</p>
+                            <div class="retro-card inline-flex justify-center items-center p-4">
+                                <span class="flex items-center space-x-4 text-2xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.36981C18.7915 3.58342 17.1197 3.00049 15.3532 2.64844C15.2422 2.92344 15.1422 3.22344 15.0532 3.54844C13.3347 3.24844 11.6497 3.24844 9.95972 3.54844C9.87072 3.22344 9.77072 2.92344 9.65972 2.64844C7.89322 3.00049 6.22147 3.58342 4.69602 4.36981C1.57727 7.73481 0.742969 11.2483 1.23672 14.5918C2.88297 16.0173 4.78272 16.9903 6.79347 17.6598C7.11222 17.2018 7.39797 16.7103 7.64997 16.1853C7.02497 15.9433 6.43347 15.6493 5.89122 15.3133C6.03222 15.2133 6.16222 15.1023 6.28722 14.9853C9.79197 16.2048 13.2082 16.2048 16.713 14.9853C16.838 15.1023 16.968 15.2133 17.109 15.3133C16.5667 15.6493 15.9752 15.9433 15.3502 16.1853C15.6022 16.7103 15.888 17.2018 16.2067 17.6598C18.2175 16.9903 20.1172 16.0173 21.7635 14.5918C22.3215 10.9593 21.35 7.52331 20.317 4.36981ZM8.02047 12.4228C7.33122 12.4228 6.76197 11.8093 6.76197 11.0668C6.76197 10.3258 7.33122 9.71081 8.02047 9.71081C8.70972 9.71081 9.27897 10.3258 9.26797 11.0668C9.26797 11.8093 8.70972 12.4228 8.02047 12.4228ZM14.9797 12.4228C14.2905 12.4228 13.7212 11.8093 13.7212 11.0668C13.7212 10.3258 14.2905 9.71081 14.9797 9.71081C15.669 9.71081 16.2382 10.3258 16.2272 11.0668C16.2272 11.8093 15.669 12.4228 14.9797 12.4228Z"/></svg>
+                                    <span>dr_waltz</span>
+                                </span>
+                            </div>
+                        </section>
+                    </main>
+                    <footer class="text-center mt-16 border-t-2 border-solid pt-4" style="border-color: #808080 #FFFFFF;">
+                        <p>&copy; 1995-2024 SoloWaltz Corp. All rights reserved.</p>
+                    </footer>
                 </div>
-            </header>
-
-            <main>
-                <section id="projects">
-                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-indigo-500 pb-2 inline-block">My Featured Projects</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        
-                        <!-- NEW Project -->
-                        <div class="glass-effect-gold rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
-                            <div class="p-6 flex-grow flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-2xl font-semibold text-amber-400">Untitled Game</h3>
-                                    <p class="mt-2 text-gray-400">A more current game according to my abilities, although it's still an experiment.</p>
-                                </div>
-                                <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="inline-block mt-4 bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Play on Roblox &rarr;</a>
-                            </div>
-                        </div>
-
-                        <!-- Project 1 -->
-                        <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
-                            <div class="p-6 flex-grow flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-2xl font-semibold text-indigo-400">Hunt</h3>
-                                    <p class="mt-2 text-gray-400">A platformer game where I showcase how good 3D particles can look.</p>
-                                </div>
-                                <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Play on Roblox &rarr;</a>
-                            </div>
-                        </div>
-                        <!-- Project 2 -->
-                        <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
-                            <div class="p-6 flex-grow flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-2xl font-semibold text-indigo-400">Grip Test</h3>
-                                    <p class="mt-2 text-gray-400">A game I made when I hadn't fully mastered coding yet.</p>
-                                </div>
-                                <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Play on Roblox &rarr;</a>
-                            </div>
-                        </div>
-                        <!-- Project 3 -->
-                        <div class="glass-effect rounded-xl group transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col">
-                           <div class="p-6 flex-grow flex flex-col justify-between">
-                                <div>
-                                    <h3 class="text-2xl font-semibold text-indigo-400">Test</h3>
-                                    <p class="mt-2 text-gray-400">A game made on an alternate account, where I tried to recreate a dream I had.</p>
-                                </div>
-                                <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 self-start">Play on Roblox &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- =========== NEW PRICING SECTION =========== -->
-                <section id="pricing" class="mt-20">
-                    <h2 class="text-3xl font-bold text-center mb-10 border-b-2 border-indigo-500 pb-2 inline-block">Commission Pricing</h2>
-                    <div class="glass-effect rounded-xl max-w-md mx-auto p-8 text-center">
-                        <p class="text-lg text-gray-300 mb-4">
-                            My commission rates are flexible and based on the project's complexity and scope.
-                        </p>
-                        <div class="text-5xl font-bold text-indigo-400 my-4">
-                            $5 - $20 USD
-                        </div>
-                        <p class="text-gray-400 mt-2">
-                            Contact me with your idea for a specific quote.
-                        </p>
-                    </div>
-                </section>
-
-                <section id="contact" class="mt-20 text-center">
-                    <h2 class="text-3xl font-bold mb-6">Let's Talk?</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto mb-8">I am available for commissions and open to collaborating on interesting projects.</p>
-                    <div class="flex justify-center items-center space-x-6">
-                        <span class="flex items-center space-x-2 text-lg text-indigo-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="currentColor"><path d="M20.317 4.36981C18.7915 3.58342 17.1197 3.00049 15.3532 2.64844C15.2422 2.92344 15.1422 3.22344 15.0532 3.54844C13.3347 3.24844 11.6497 3.24844 9.95972 3.54844C9.87072 3.22344 9.77072 2.92344 9.65972 2.64844C7.89322 3.00049 6.22147 3.58342 4.69602 4.36981C1.57727 7.73481 0.742969 11.2483 1.23672 14.5918C2.88297 16.0173 4.78272 16.9903 6.79347 17.6598C7.11222 17.2018 7.39797 16.7103 7.64997 16.1853C7.02497 15.9433 6.43347 15.6493 5.89122 15.3133C6.03222 15.2133 6.16222 15.1023 6.28722 14.9853C9.79197 16.2048 13.2082 16.2048 16.713 14.9853C16.838 15.1023 16.968 15.2133 17.109 15.3133C16.5667 15.6493 15.9752 15.9433 15.3502 16.1853C15.6022 16.7103 15.888 17.2018 16.2067 17.6598C18.2175 16.9903 20.1172 16.0173 21.7635 14.5918C22.3215 10.9593 21.35 7.52331 20.317 4.36981ZM8.02047 12.4228C7.33122 12.4228 6.76197 11.8093 6.76197 11.0668C6.76197 10.3258 7.33122 9.71081 8.02047 9.71081C8.70972 9.71081 9.27897 10.3258 9.26797 11.0668C9.26797 11.8093 8.70972 12.4228 8.02047 12.4228ZM14.9797 12.4228C14.2905 12.4228 13.7212 11.8093 13.7212 11.0668C13.7212 10.3258 14.2905 9.71081 14.9797 9.71081C15.669 9.71081 16.2382 10.3258 16.2272 11.0668C16.2272 11.8093 15.669 12.4228 14.9797 12.4228Z"/></svg>
-                            <span>dr_waltz</span>
-                        </span>
-                    </div>
-                </section>
-            </main>
-            <footer class="text-center text-gray-500 mt-20 border-t border-gray-800 pt-6">
-                <p>&copy; 2024 SoloWaltz. All rights reserved.</p>
-            </footer>
+            </div>
         </div>
     </div>
 
@@ -283,45 +292,40 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mainContent = document.getElementById('main-content');
             const music = document.getElementById('background-music');
-            const curtainScreen = document.getElementById('curtain-screen');
-            const curtainLeft = document.getElementById('curtain-left');
-            const curtainRight = document.getElementById('curtain-right');
-            const ropeContainer = document.getElementById('rope-container');
+            const bootScreen = document.getElementById('boot-screen');
             
-            ropeContainer.addEventListener('click', () => {
-                openCurtains();
-            }, { once: true });
-
-            function openCurtains() {
-                ropeContainer.classList.add('pulled');
-                curtainLeft.classList.add('open');
-                curtainRight.classList.add('open');
+            const startPortfolio = () => {
+                bootScreen.style.opacity = '0';
                 
                 playMusicWithFadeIn();
 
+                // Show main content after boot screen fades
                 setTimeout(() => {
+                    bootScreen.style.display = 'none';
                     mainContent.style.visibility = 'visible';
                     mainContent.style.opacity = '1';
                     document.body.style.overflow = 'auto';
-                    
-                    curtainLeft.addEventListener('transitionend', () => {
-                        curtainScreen.remove();
-                    }, { once: true });
-
                     fetchRobloxAvatar('1078236215');
-                }, 500);
-            }
+                }, 1000); 
+            };
+
+            bootScreen.addEventListener('click', startPortfolio, { once: true });
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter') {
+                    startPortfolio();
+                }
+            }, { once: true });
+
 
             function playMusicWithFadeIn() {
                 music.volume = 0;
-                music.play().catch(error => console.error("The browser blocked autoplay:", error));
+                music.play().catch(error => console.error("Autoplay was blocked:", error));
 
                 let currentVolume = 0;
                 const targetVolume = 0.2;
                 const fadeAudioIn = setInterval(() => {
                     if (currentVolume < targetVolume) {
-                        currentVolume += 0.025;
-                        if (currentVolume > targetVolume) currentVolume = targetVolume;
+                        currentVolume = Math.min(targetVolume, currentVolume + 0.01);
                         music.volume = currentVolume;
                     } else {
                         clearInterval(fadeAudioIn);
@@ -329,29 +333,31 @@
                 }, 100);
             }
 
-            // --- AVATAR FETCH FUNCTION WITH RETRIES ---
-            async function fetchRobloxAvatar(userId) {
+            // --- AVATAR FETCH FUNCTION ---
+            async function fetchRobloxAvatar(userId, retries = 3) {
                 const avatarImage = document.getElementById('roblox-avatar');
-                const originalApiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
-                // We use a proxy to avoid CORS issues
-                const proxyUrl = 'https://api.allorigins.win/get?url=';
-                const apiUrl = proxyUrl + encodeURIComponent(originalApiUrl);
-
+                const apiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`;
+                // Using a simple CORS proxy
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+                
                 try {
-                    const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error('Could not get response from proxy.');
-                    const proxyData = await response.json();
-                    const robloxData = JSON.parse(proxyData.contents);
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) throw new Error('Proxy response not OK');
+                    const data = await response.json();
+                    const robloxData = JSON.parse(data.contents);
                     if (robloxData.data && robloxData.data.length > 0) {
                         avatarImage.src = robloxData.data[0].imageUrl;
                     } else {
-                        throw new Error('User not found or no avatar.');
+                        throw new Error('Avatar data not found in Roblox API response.');
                     }
                 } catch (error) {
-                    console.error('Error fetching avatar, retrying in 2 seconds...', error);
-                    // Wait 2 seconds before retrying
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                    fetchRobloxAvatar(userId); // Retry
+                    console.error('Error fetching avatar:', error.message);
+                    if (retries > 0) {
+                        console.log(`Retrying... (${retries} attempts left)`);
+                        setTimeout(() => fetchRobloxAvatar(userId, retries - 1), 2000);
+                    } else {
+                        avatarImage.alt = "Error loading avatar";
+                    }
                 }
             }
 
@@ -359,6 +365,10 @@
             const toggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
+            
+            // Set initial state
+            pauseIcon.classList.remove('hidden');
+            
             toggleButton.addEventListener('click', () => {
                 if (music.paused) {
                     music.play();
