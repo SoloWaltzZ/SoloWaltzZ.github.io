@@ -155,16 +155,16 @@
     <!-- =========== BOOT SCREEN =========== -->
     <div id="boot-screen">
         <div class="boot-text-container">
-            <span>SoloWaltz BIOS v2.006</span>
-            <span>Copyright (C) 2006, SoloWaltz Corp.</span>
+            <span data-key="bootBio">SoloWaltz BIOS v2.006</span>
+            <span data-key="bootCopyright">Copyright (C) 2006, SoloWaltz Corp.</span>
             <span></span>
-            <span>Initializing Portfolio Data... OK</span>
-            <span>Loading Roblox Scripter Module... OK</span>
-            <span>Checking Commission Status... AVAILABLE</span>
+            <span data-key="bootInit">Initializing Portfolio Data... OK</span>
+            <span data-key="bootLoad">Loading Roblox Scripter Module... OK</span>
+            <span data-key="bootStatus">Checking Commission Status... AVAILABLE</span>
             <span></span>
-            <span>All systems ready.</span>
+            <span data-key="bootReady">All systems ready.</span>
             <span></span>
-            <span>> Click or Press ENTER to continue<span class="blinking-cursor">_</span></span>
+            <span data-key="bootContinue">> Click or Press ENTER to continue<span class="blinking-cursor">_</span></span>
         </div>
     </div>
 
@@ -172,7 +172,8 @@
         <!-- Audio Element -->
         <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/v1755306251/L_amore_dice_ciao_Slow_Take_c1tiyn.mp3" loop></audio>
 
-        <!-- Music Control Button -->
+        <!-- UI Buttons -->
+        <button id="lang-toggle" data-key="langBtn" class="fixed bottom-5 left-5 z-50 retro-button">Español</button>
         <button id="music-toggle" class="fixed bottom-5 right-5 z-50 retro-button">
             <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
@@ -192,21 +193,21 @@
                 <div class="window-content">
                      <header class="flex flex-col md:flex-row items-center justify-between mb-12">
                         <div class="text-center md:text-left text-xl">
-                            <h1 class="text-5xl md:text-6xl">SoloWaltz</h1>
-                            <p class="mt-2 text-2xl">Roblox Scripter</p>
+                            <h1 class="text-5xl md:text-6xl" data-key="title">SoloWaltz</h1>
+                            <p class="mt-2 text-2xl" data-key="subtitle">Roblox Scripter</p>
                             
                             <div class="mt-6 max-w-lg space-y-4 text-lg">
                                 <div>
-                                    <h4 class="font-bold tracking-wider underline">Mechanics & VFX</h4>
-                                    <p>I build game mechanics and polish the experience with visual effects (VFX). I turn ideas into tangible functionalities.</p>
+                                    <h4 class="font-bold tracking-wider underline" data-key="mechanicsTitle">Mechanics & VFX</h4>
+                                    <p data-key="mechanicsDesc">I build game mechanics and polish the experience with visual effects (VFX). I turn ideas into tangible functionalities.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold tracking-wider underline">Experience</h4>
-                                    <p>With approx. 5 years of creating experiences on Roblox, I have honed my skills.</p>
+                                    <h4 class="font-bold tracking-wider underline" data-key="experienceTitle">Experience</h4>
+                                    <p data-key="experienceDesc">With approx. 5 years of creating experiences on Roblox, I have honed my skills.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold tracking-wider underline">Availability</h4>
-                                    <p>Open for commissions.</p>
+                                    <h4 class="font-bold tracking-wider underline" data-key="availabilityTitle">Availability</h4>
+                                    <p data-key="availabilityDesc">Open for commissions.</p>
                                 </div>
                             </div>
 
@@ -220,70 +221,65 @@
 
                     <main>
                         <section id="projects">
-                            <h2 class="retro-header">Featured Projects</h2>
+                            <h2 class="retro-header" data-key="projectsHeader">Featured Projects</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 
-                                <!-- Project -->
                                 <div class="retro-card-gold h-full flex flex-col justify-between">
                                     <div>
-                                        <h3 class="text-3xl font-bold">Platformer System</h3>
-                                        <p class="mt-2 text-lg">A platformer movement system I was testing.</p>
+                                        <h3 class="text-3xl font-bold" data-key="proj1Title">Platformer System</h3>
+                                        <p class="mt-2 text-lg" data-key="proj1Desc">A platformer movement system I was testing.</p>
                                     </div>
-                                    <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                    <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="inline-block mt-4 retro-button" data-key="playBtn">Play on Roblox...</a>
                                 </div>
 
-                                <!-- Project -->
                                 <div class="retro-card h-full flex flex-col justify-between">
                                     <div>
-                                        <h3 class="text-3xl font-bold">Untitled Game</h3>
-                                        <p class="mt-2 text-lg">A more current game, although it's still an experiment.</p>
+                                        <h3 class="text-3xl font-bold" data-key="proj2Title">Untitled Game</h3>
+                                        <p class="mt-2 text-lg" data-key="proj2Desc">A more current game, although it's still an experiment.</p>
                                     </div>
-                                    <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                    <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="inline-block mt-4 retro-button" data-key="playBtn">Play on Roblox...</a>
                                 </div>
 
-                                <!-- Project -->
                                 <div class="retro-card h-full flex flex-col justify-between">
                                     <div>
-                                        <h3 class="text-3xl font-bold">Hunt</h3>
-                                        <p class="mt-2 text-lg">A platformer game where I showcase 3D particles.</p>
+                                        <h3 class="text-3xl font-bold" data-key="proj3Title">Hunt</h3>
+                                        <p class="mt-2 text-lg" data-key="proj3Desc">A platformer game where I showcase 3D particles.</p>
                                     </div>
-                                    <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                    <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="inline-block mt-4 retro-button" data-key="playBtn">Play on Roblox...</a>
                                 </div>
                                 
-                                <!-- Project -->
                                 <div class="retro-card h-full flex flex-col justify-between">
                                     <div>
-                                        <h3 class="text-3xl font-bold">Grip Test</h3>
-                                        <p class="mt-2 text-lg">A game I made when I was learning to code.</p>
+                                        <h3 class="text-3xl font-bold" data-key="proj4Title">Grip Test</h3>
+                                        <p class="mt-2 text-lg" data-key="proj4Desc">A game I made when I was learning to code.</p>
                                     </div>
-                                    <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                    <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="inline-block mt-4 retro-button" data-key="playBtn">Play on Roblox...</a>
                                 </div>
 
-                                <!-- Project -->
                                 <div class="retro-card h-full flex flex-col justify-between">
                                    <div>
-                                        <h3 class="text-3xl font-bold">Test</h3>
-                                        <p class="mt-2 text-lg">A game made to recreate a dream I had.</p>
+                                        <h3 class="text-3xl font-bold" data-key="proj5Title">Test</h3>
+                                        <p class="mt-2 text-lg" data-key="proj5Desc">A game made to recreate a dream I had.</p>
                                     </div>
-                                    <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="inline-block mt-4 retro-button">Play on Roblox...</a>
+                                    <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="inline-block mt-4 retro-button" data-key="playBtn">Play on Roblox...</a>
                                 </div>
                             </div>
                         </section>
 
                         <section id="pricing" class="mt-16">
-                            <h2 class="retro-header">Commission Pricing</h2>
+                            <h2 class="retro-header" data-key="pricingHeader">Commission Pricing</h2>
                             <div class="retro-card max-w-md mx-auto p-8 text-center">
-                                <p class="text-xl mb-4">Rates are flexible and based on project complexity.</p>
+                                <p class="text-xl mb-4" data-key="pricingDesc1">Rates are flexible and based on project complexity.</p>
                                 <div class="text-5xl font-bold my-4">
                                     $5 - $20 USD
                                 </div>
-                                <p class="text-lg mt-2">Contact me with your idea for a specific quote.</p>
+                                <p class="text-lg mt-2" data-key="pricingDesc2">Contact me with your idea for a specific quote.</p>
                             </div>
                         </section>
 
                         <section id="contact" class="mt-16 text-center">
-                            <h2 class="retro-header">Contact</h2>
-                            <p class="text-xl max-w-2xl mx-auto mb-8">Available for commissions and collaborations.</p>
+                            <h2 class="retro-header" data-key="contactHeader">Contact</h2>
+                            <p class="text-xl max-w-2xl mx-auto mb-8" data-key="contactDesc">Available for commissions and collaborations.</p>
                             <div class="retro-card inline-flex justify-center items-center p-4">
                                 <span class="flex items-center space-x-4 text-2xl">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.36981C18.7915 3.58342 17.1197 3.00049 15.3532 2.64844C15.2422 2.92344 15.1422 3.22344 15.0532 3.54844C13.3347 3.24844 11.6497 3.24844 9.95972 3.54844C9.87072 3.22344 9.77072 2.92344 9.65972 2.64844C7.89322 3.00049 6.22147 3.58342 4.69602 4.36981C1.57727 7.73481 0.742969 11.2483 1.23672 14.5918C2.88297 16.0173 4.78272 16.9903 6.79347 17.6598C7.11222 17.2018 7.39797 16.7103 7.64997 16.1853C7.02497 15.9433 6.43347 15.6493 5.89122 15.3133C6.03222 15.2133 6.16222 15.1023 6.28722 14.9853C9.79197 16.2048 13.2082 16.2048 16.713 14.9853C16.838 15.1023 16.968 15.2133 17.109 15.3133C16.5667 15.6493 15.9752 15.9433 15.3502 16.1853C15.6022 16.7103 15.888 17.2018 16.2067 17.6598C18.2175 16.9903 20.1172 16.0173 21.7635 14.5918C22.3215 10.9593 21.35 7.52331 20.317 4.36981ZM8.02047 12.4228C7.33122 12.4228 6.76197 11.8093 6.76197 11.0668C6.76197 10.3258 7.33122 9.71081 8.02047 9.71081C8.70972 9.71081 9.27897 10.3258 9.26797 11.0668C9.26797 11.8093 8.70972 12.4228 8.02047 12.4228ZM14.9797 12.4228C14.2905 12.4228 13.7212 11.8093 13.7212 11.0668C13.7212 10.3258 14.2905 9.71081 14.9797 9.71081C15.669 9.71081 16.2382 10.3258 16.2272 11.0668C16.2272 11.8093 15.669 12.4228 14.9797 12.4228Z"/></svg>
@@ -293,7 +289,7 @@
                         </section>
                     </main>
                     <footer class="text-center mt-16 border-t-2 border-solid pt-4" style="border-color: #808080 #FFFFFF;">
-                        <p>&copy; 2006-2024 SoloWaltz Corp. All rights reserved.</p>
+                        <p data-key="footerText">&copy; 2006-2024 SoloWaltz Corp. All rights reserved.</p>
                     </footer>
                 </div>
             </div>
@@ -302,16 +298,102 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- TRANSLATION DATA ---
+            const translations = {
+                en: {
+                    bootBio: "SoloWaltz BIOS v2.006",
+                    bootCopyright: "Copyright (C) 2006, SoloWaltz Corp.",
+                    bootInit: "Initializing Portfolio Data... OK",
+                    bootLoad: "Loading Roblox Scripter Module... OK",
+                    bootStatus: "Checking Commission Status... AVAILABLE",
+                    bootReady: "All systems ready.",
+                    bootContinue: "> Click or Press ENTER to continue",
+                    title: "SoloWaltz",
+                    subtitle: "Roblox Scripter",
+                    mechanicsTitle: "Mechanics & VFX",
+                    mechanicsDesc: "I build game mechanics and polish the experience with visual effects (VFX). I turn ideas into tangible functionalities.",
+                    experienceTitle: "Experience",
+                    experienceDesc: "With approx. 5 years of creating experiences on Roblox, I have honed my skills.",
+                    availabilityTitle: "Availability",
+                    availabilityDesc: "Open for commissions.",
+                    projectsHeader: "Featured Projects",
+                    proj1Title: "Platformer System",
+                    proj1Desc: "A platformer movement system I was testing.",
+                    proj2Title: "Untitled Game",
+                    proj2Desc: "A more current game, although it's still an experiment.",
+                    proj3Title: "Hunt",
+                    proj3Desc: "A platformer game where I showcase 3D particles.",
+                    proj4Title: "Grip Test",
+                    proj4Desc: "A game I made when I was learning to code.",
+                    proj5Title: "Test",
+                    proj5Desc: "A game made to recreate a dream I had.",
+                    playBtn: "Play on Roblox...",
+                    pricingHeader: "Commission Pricing",
+                    pricingDesc1: "Rates are flexible and based on project complexity.",
+                    pricingDesc2: "Contact me with your idea for a specific quote.",
+                    contactHeader: "Contact",
+                    contactDesc: "Available for commissions and collaborations.",
+                    footerText: "&copy; 2006-2024 SoloWaltz Corp. All rights reserved.",
+                    langBtn: "Español"
+                },
+                es: {
+                    bootBio: "BIOS de SoloWaltz v2.006",
+                    bootCopyright: "Copyright (C) 2006, SoloWaltz Corp.",
+                    bootInit: "Inicializando datos del portafolio... OK",
+                    bootLoad: "Cargando módulo de Scripter de Roblox... OK",
+                    bootStatus: "Verificando estado de comisiones... DISPONIBLE",
+                    bootReady: "Todos los sistemas listos.",
+                    bootContinue: "> Haz clic o presiona ENTER para continuar",
+                    title: "SoloWaltz",
+                    subtitle: "Scripter de Roblox",
+                    mechanicsTitle: "Mecánicas y VFX",
+                    mechanicsDesc: "Construyo mecánicas de juego y pulo la experiencia con efectos visuales (VFX). Convierto ideas en funcionalidades tangibles.",
+                    experienceTitle: "Experiencia",
+                    experienceDesc: "Con aprox. 5 años creando experiencias en Roblox, he perfeccionado mis habilidades.",
+                    availabilityTitle: "Disponibilidad",
+                    availabilityDesc: "Abierto para comisiones.",
+                    projectsHeader: "Proyectos Destacados",
+                    proj1Title: "Sistema de Plataformas",
+                    proj1Desc: "Un sistema de movimiento de plataformas que estuve probando.",
+                    proj2Title: "Juego sin Título",
+                    proj2Desc: "Un juego más actual, aunque sigue siendo un experimento.",
+                    proj3Title: "Cazar",
+                    proj3Desc: "Un juego de plataformas donde demuestro partículas 3D.",
+                    proj4Title: "Prueba de Agarre",
+                    proj4Desc: "Un juego que hice cuando estaba aprendiendo a programar.",
+                    proj5Title: "Prueba",
+                    proj5Desc: "Un juego hecho para recrear un sueño que tuve.",
+                    playBtn: "Jugar en Roblox...",
+                    pricingHeader: "Precios de Comisión",
+                    pricingDesc1: "Las tarifas son flexibles y se basan en la complejidad del proyecto.",
+                    pricingDesc2: "Contáctame con tu idea para una cotización específica.",
+                    contactHeader: "Contacto",
+                    contactDesc: "Disponible para comisiones y colaboraciones.",
+                    footerText: "&copy; 2006-2024 SoloWaltz Corp. Todos los derechos reservados.",
+                    langBtn: "English"
+                }
+            };
+            let currentLanguage = 'en';
+
+            // --- GENERAL ELEMENTS ---
             const mainContent = document.getElementById('main-content');
             const music = document.getElementById('background-music');
             const bootScreen = document.getElementById('boot-screen');
             
+            // --- TRANSLATION FUNCTION ---
+            const setLanguage = (lang) => {
+                document.querySelectorAll('[data-key]').forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+            };
+
+            // --- INITIALIZATION ---
             const startPortfolio = () => {
                 bootScreen.style.opacity = '0';
-                
                 playMusicWithFadeIn();
-
-                // Show main content after boot screen fades
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
                     mainContent.style.visibility = 'visible';
@@ -328,11 +410,9 @@
                 }
             }, { once: true });
 
-
             function playMusicWithFadeIn() {
                 music.volume = 0;
                 music.play().catch(error => console.error("Autoplay was blocked:", error));
-
                 let currentVolume = 0;
                 const targetVolume = 0.2;
                 const fadeAudioIn = setInterval(() => {
@@ -345,13 +425,11 @@
                 }, 100);
             }
 
-            // --- AVATAR FETCH FUNCTION ---
+            // --- AVATAR FETCH ---
             async function fetchRobloxAvatar(userId, retries = 3) {
                 const avatarImage = document.getElementById('roblox-avatar');
                 const apiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`;
-                // Using a simple CORS proxy
                 const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
-                
                 try {
                     const response = await fetch(proxyUrl);
                     if (!response.ok) throw new Error('Proxy response not OK');
@@ -365,7 +443,6 @@
                 } catch (error) {
                     console.error('Error fetching avatar:', error.message);
                     if (retries > 0) {
-                        console.log(`Retrying... (${retries} attempts left)`);
                         setTimeout(() => fetchRobloxAvatar(userId, retries - 1), 2000);
                     } else {
                         avatarImage.alt = "Error loading avatar";
@@ -373,15 +450,15 @@
                 }
             }
 
-            // --- MUSIC CONTROL ---
-            const toggleButton = document.getElementById('music-toggle');
+            // --- UI CONTROLS ---
+            const musicToggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
+            const langToggleButton = document.getElementById('lang-toggle');
             
-            // Set initial state
-            pauseIcon.classList.remove('hidden');
+            pauseIcon.classList.remove('hidden'); // Music starts playing
             
-            toggleButton.addEventListener('click', () => {
+            musicToggleButton.addEventListener('click', () => {
                 if (music.paused) {
                     music.play();
                     playIcon.classList.add('hidden');
@@ -391,6 +468,11 @@
                     playIcon.classList.remove('hidden');
                     pauseIcon.classList.add('hidden');
                 }
+            });
+
+            langToggleButton.addEventListener('click', () => {
+                currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
+                setLanguage(currentLanguage);
             });
         });
     </script>
