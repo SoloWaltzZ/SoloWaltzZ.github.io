@@ -97,14 +97,16 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        /* The Flash Effect */
+        /* --- UPDATED: The Divine Radiance Effect (No White Flash) --- */
         #fiat-lux {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: white;
+            /* Replaced white background with a golden radial gradient */
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 1) 0%, rgba(138, 110, 24, 0.4) 40%, rgba(0,0,0,0) 80%);
             z-index: 9998; /* Below boot screen text, above content */
             opacity: 0;
             pointer-events: none;
+            mix-blend-mode: screen; /* Blends nicely with the dark background */
         }
 
         @keyframes fadeInOut {
@@ -123,11 +125,20 @@
             to { text-shadow: 0 0 20px var(--gold); box-shadow: 0 0 20px var(--gold-dark), inset 0 0 10px var(--gold-dark); }
         }
         
+        /* Updated Animation: Gentle Golden Expansion */
         @keyframes divineLight {
-            0% { opacity: 0; }
-            10% { opacity: 1; background-color: #fff; } /* Blinding light */
-            30% { opacity: 1; background-color: #fff; }
-            100% { opacity: 0; }
+            0% { 
+                opacity: 0; 
+                transform: scale(0.5);
+            }
+            30% { 
+                opacity: 1; 
+                transform: scale(1.5); /* Expands the golden light */
+            }
+            100% { 
+                opacity: 0; 
+                transform: scale(2.5); /* Dissipates into the void */
+            }
         }
 
         /* --- MAIN CONTENT ANIMATIONS --- */
@@ -274,7 +285,7 @@
         </div>
     </div>
     
-    <!-- The blinding light layer -->
+    <!-- The Divine Radiance layer -->
     <div id="fiat-lux"></div>
 
     <div id="main-content">
@@ -521,27 +532,27 @@
                 });
             };
 
-            // --- INITIALIZATION (FIAT LUX SEQUENCE) ---
+            // --- INITIALIZATION (DIVINE RADIANCE SEQUENCE) ---
             const startPortfolio = () => {
                 // 1. Play Music
                 playMusicWithFadeIn();
 
-                // 2. Trigger THE FLASH
-                fiatLux.style.animation = "divineLight 2.5s ease-in-out forwards";
+                // 2. Trigger THE RADIANCE (Gentle Gold)
+                fiatLux.style.animation = "divineLight 3.5s ease-in-out forwards";
                 
-                // 3. Hide Boot Screen & Reveal Content during flash whiteout (approx 0.3s in)
+                // 3. Hide Boot Screen & Reveal Content during expansion (approx 0.5s in)
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
                     mainContent.style.visibility = 'visible';
                     mainContent.classList.add('content-visible');
                     document.body.style.overflow = 'auto';
                     fetchRobloxAvatar('1078236215');
-                }, 500); 
+                }, 800); 
 
-                // 4. Cleanup Flash div after animation
+                // 4. Cleanup Div after animation
                 setTimeout(() => {
                     fiatLux.style.display = 'none';
-                }, 2600);
+                }, 3600);
             };
 
             bootScreen.addEventListener('click', startPortfolio, { once: true });
