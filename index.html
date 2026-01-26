@@ -3,42 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoloWaltz - The Creator</title>
+    <title>SoloWaltz - Roblox Developer</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="SoloWaltz - Epic Roblox Programmer">
+    <meta property="og:title" content="SoloWaltz - Roblox Programmer">
     <meta property="og:description" content="Forging worlds and breathing life into mechanics on Roblox.">
     <meta property="og:image" content="https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1078236215&size=420x420&format=Png&isCircular=false">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Cinzel (Epic/Roman), UnifrakturMaguntia (Biblical/Gothic), Crimson Text (Body) -->
+    <!-- Google Fonts: Cinzel (Headers), Crimson Text (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- EPIC THEME CONFIGURATION --- */
+        /* --- THEME CONFIGURATION --- */
         :root {
             --gold: #d4af37;
             --gold-light: #f9e5a1;
             --gold-dark: #8a6e18;
-            --royal-red: #4a0404;
-            --parchment: #f3e5ab;
-            --dark-void: #050505;
+            --dark-void: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.95);
         }
 
         body {
             font-family: 'Crimson Text', serif;
             background-color: var(--dark-void);
             color: #e0e0e0;
-            overflow: hidden; /* Locked during boot */
             background-image: 
-                radial-gradient(circle at 50% 50%, #1a0505 0%, #000000 80%),
+                radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 80%),
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
@@ -48,205 +46,73 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        
-        .biblical-font {
-            font-family: 'UnifrakturMaguntia', cursive;
+
+        /* --- FADE IN ON LOAD --- */
+        body {
+            animation: fadeInPage 1.5s ease-out forwards;
         }
 
-        /* --- BOOT SCREEN (GENESIS) --- */
-        #boot-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .verse-text {
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: fadeInOut 5s forwards;
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            text-shadow: 0 0 10px var(--gold-dark);
+        @keyframes fadeInPage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        .click-to-enter {
-            margin-top: 3rem;
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: fadeIn 1s forwards 4s, glow 2s infinite alternate 4s;
-            border: 1px solid var(--gold);
-            padding: 15px 40px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            background: rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-        }
-        
-        .click-to-enter:hover {
-            transform: scale(1.05);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        /* --- UPDATED: The Divine Radiance Effect (No White Flash) --- */
-        #fiat-lux {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Replaced white background with a golden radial gradient */
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 1) 0%, rgba(138, 110, 24, 0.4) 40%, rgba(0,0,0,0) 80%);
-            z-index: 9998; /* Below boot screen text, above content */
-            opacity: 0;
-            pointer-events: none;
-            mix-blend-mode: screen; /* Blends nicely with the dark background */
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(0.9); }
-            20% { opacity: 1; transform: scale(1); }
-            80% { opacity: 1; filter: blur(0px); }
-            100% { opacity: 0; filter: blur(5px); transform: scale(1.1); } 
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 5px var(--gold-dark); box-shadow: 0 0 5px var(--gold-dark), inset 0 0 5px var(--gold-dark); }
-            to { text-shadow: 0 0 20px var(--gold); box-shadow: 0 0 20px var(--gold-dark), inset 0 0 10px var(--gold-dark); }
-        }
-        
-        /* Updated Animation: Gentle Golden Expansion */
-        @keyframes divineLight {
-            0% { 
-                opacity: 0; 
-                transform: scale(0.5);
-            }
-            30% { 
-                opacity: 1; 
-                transform: scale(1.5); /* Expands the golden light */
-            }
-            100% { 
-                opacity: 0; 
-                transform: scale(2.5); /* Dissipates into the void */
-            }
-        }
-
-        /* --- MAIN CONTENT ANIMATIONS --- */
-        #main-content {
-            opacity: 0;
-            /* No transition here, controlled by JS/CSS animation after flash */
-        }
-        
-        .content-visible {
-            animation: realmReveal 3s ease-out forwards;
-        }
-
-        @keyframes realmReveal {
-            0% { opacity: 0; transform: translateY(50px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* --- LAYOUT & CARDS --- */
-        .centered-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .holy-card {
-            background: linear-gradient(180deg, rgba(20, 10, 10, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%);
-            border: 1px solid var(--gold-dark);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
+        /* --- CARDS --- */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: all 0.4s ease;
         }
         
-        .holy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2); /* Golden glow */
-            border-color: var(--gold);
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-dark);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
         }
 
-        .holy-card::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transform: scale(0.5);
-            transition: opacity 0.5s, transform 0.5s;
-            pointer-events: none;
-        }
-        
-        .holy-card:hover::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* --- AVATAR GLOW --- */
-        .sacred-avatar-container {
+        /* --- AVATAR --- */
+        .avatar-container {
             position: relative;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto;
         }
         
-        .sacred-halo {
+        .avatar-ring {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%; height: 100%;
+            width: 105%; height: 105%;
             border-radius: 50%;
-            border: 2px solid var(--gold);
-            animation: spinHalo 20s linear infinite;
-        }
-        
-        .sacred-halo::before {
-            content: '';
-            position: absolute;
-            top: -10px; left: 50%;
-            width: 10px; height: 10px;
-            background: var(--gold);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--gold);
+            border: 1px solid var(--gold-dark);
+            opacity: 0.6;
+            transition: all 0.5s ease;
         }
 
-        @keyframes spinHalo {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        .avatar-container:hover .avatar-ring {
+            width: 110%; height: 110%;
+            border-color: var(--gold);
+            opacity: 1;
         }
 
         /* --- BUTTONS --- */
-        .epic-btn {
+        .gold-btn {
             background: transparent;
-            border: 1px solid var(--gold);
+            border: 1px solid var(--gold-dark);
             color: var(--gold);
-            padding: 0.8rem 2rem;
+            padding: 0.6rem 1.5rem;
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
-        .epic-btn:hover {
-            background: var(--gold);
-            color: black;
-            box-shadow: 0 0 25px var(--gold);
+        .gold-btn:hover {
+            background: var(--gold-dark);
+            color: #fff;
+            border-color: var(--gold);
         }
 
         /* --- DIVIDERS --- */
@@ -256,13 +122,14 @@
             justify-content: center;
             margin: 2rem 0;
             color: var(--gold-dark);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            opacity: 0.7;
         }
         
         .ornament::before, .ornament::after {
             content: '';
             height: 1px;
-            width: 100px;
+            width: 60px;
             background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
             margin: 0 1rem;
         }
@@ -271,176 +138,140 @@
 </head>
 <body class="antialiased">
 
-    <!-- =========== BOOT SCREEN (GENESIS) =========== -->
-    <div id="boot-screen">
-        <div class="verse-text mb-2">
-            "In the beginning, there was only the Void."
-        </div>
-        <div class="verse-text" style="animation-delay: 2.5s">
-            Then, He wrote the Code.
-        </div>
-        
-        <div class="click-to-enter" data-key="bootContinue">
-            Enter Creation
-        </div>
+    <!-- Audio Element -->
+    <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/End_Credits_Music_Cyberpunk_2077_w7ho9h.mp3" loop></audio>
+
+    <!-- UI Buttons (Bottom Left) -->
+    <div class="fixed bottom-8 left-8 flex gap-4 z-50">
+        <button id="lang-toggle" data-key="langBtn" class="gold-btn backdrop-blur-md bg-black/50">Español</button>
+        <button id="music-toggle" class="gold-btn backdrop-blur-md bg-black/50 flex items-center gap-2">
+            <span class="mr-1">Music</span>
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+        </button>
     </div>
-    
-    <!-- The Divine Radiance layer -->
-    <div id="fiat-lux"></div>
 
-    <div id="main-content">
-        <!-- Audio Element -->
-        <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/End_Credits_Music_Cyberpunk_2077_w7ho9h.mp3" loop></audio>
-
-        <!-- UI Buttons -->
-        <div class="fixed bottom-8 left-0 right-0 flex justify-center gap-4 z-50 pointer-events-none">
-            <button id="lang-toggle" data-key="langBtn" class="pointer-events-auto epic-btn backdrop-blur-md bg-black/50 text-xs md:text-sm">Español</button>
-            <button id="music-toggle" class="pointer-events-auto epic-btn backdrop-blur-md bg-black/50 flex items-center gap-2 text-xs md:text-sm">
-                <span class="mr-1">Music</span>
-                <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
-            </button>
-        </div>
-
-        <!-- Main Container -->
-        <div class="container mx-auto max-w-5xl px-4 py-16 relative">
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-5xl px-4 py-16">
+        
+        <!-- Header Section -->
+        <header class="flex flex-col items-center text-center mb-20 relative z-10">
             
-            <!-- Header Section (CENTERED ALTAR) -->
-            <header class="centered-layout mb-24 relative z-10">
-                <!-- Decorative Background Glow -->
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-600/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+            <!-- Avatar -->
+            <div class="avatar-container mb-8 group cursor-pointer">
+                <div class="avatar-ring"></div>
+                <div class="absolute inset-0 rounded-full bg-black overflow-hidden border border-gray-800">
+                    <img id="roblox-avatar" src="https://placehold.co/200x200/0a0a0a/d4af37?text=LOADING" alt="Roblox Avatar" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500">
+                </div>
+            </div>
 
-                <!-- Avatar with Spinning Halo -->
-                <div class="sacred-avatar-container mb-8 group cursor-pointer">
-                    <div class="sacred-halo opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div class="absolute inset-2 border border-yellow-800/50 rounded-full bg-black overflow-hidden">
-                        <img id="roblox-avatar" src="https://placehold.co/200x200/0a0a0a/d4af37?text=LOADING" alt="Roblox Avatar" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+            <!-- Title & Text -->
+            <h1 class="text-5xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-yellow-700 mb-2" data-key="title">SoloWaltz</h1>
+            <p class="text-xl md:text-2xl text-yellow-100/70 tracking-widest font-light" data-key="subtitle">Roblox Developer & Builder</p>
+            
+            <div class="ornament">✦</div>
+
+            <!-- Description & Skills -->
+            <div class="max-w-3xl space-y-8 text-lg text-gray-400">
+                <div class="text-center">
+                    <p data-key="experienceDesc" class="leading-relaxed text-xl italic font-serif">"Dedicated to creating immersive experiences through clean logic and detailed world-building."</p>
+                </div>
+                
+                <div class="flex flex-col items-center mt-10">
+                    <h4 class="text-yellow-600 font-bold tracking-widest uppercase mb-6 text-xs border-b border-yellow-900 pb-2" data-key="skillsTitle">
+                        Core Expertise
+                    </h4>
+                    
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-3 text-center text-gray-300">
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill1">Custom Systems Architecture</div>
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill2">Game Optimization</div>
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill3">Development Tools</div>
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill4">Core Mechanics</div>
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill5">Environmental Design</div>
+                        <div class="hover:text-yellow-400 transition-colors" data-key="skill6">User Interface Design</div>
                     </div>
                 </div>
+            </div>
+        </header>
 
-                <!-- Title & Text -->
-                <h1 class="text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 via-yellow-500 to-yellow-800 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]" data-key="title">SoloWaltz</h1>
-                <p class="mt-4 text-2xl md:text-3xl text-yellow-100/80 biblical-font tracking-widest" data-key="subtitle">Architect of Roblox Worlds</p>
+        <main>
+            <!-- Projects Section -->
+            <section id="projects" class="mb-24">
+                <div class="ornament">Projects</div>
                 
-                <div class="ornament">✦</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card p-6 flex flex-col justify-between group text-center">
+                        <div>
+                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj1Title">Platformer System</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj1Desc">A robust movement system designed for precision and agility.</p>
+                        </div>
+                        <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
+                    </div>
 
-                <!-- Description & Skills Centered -->
-                <div class="max-w-2xl space-y-8 text-lg text-gray-300">
-                    <div class="text-center">
-                        <p data-key="experienceDesc" class="leading-relaxed text-xl italic font-serif">"Walking the path of creation for years, honing the craft of logic and structure within the engine."</p>
+                    <!-- Project 2 -->
+                    <div class="project-card p-6 flex flex-col justify-between group text-center">
+                        <div>
+                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj2Title">Untitled Game</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj2Desc">A modern prototype currently in active development.</p>
+                        </div>
+                        <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card p-6 flex flex-col justify-between group text-center">
+                        <div>
+                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj3Title">Hunt</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj3Desc">A visual showcase focusing on particle effects and pursuit mechanics.</p>
+                        </div>
+                        <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
                     </div>
                     
-                    <div class="flex flex-col items-center">
-                        <h4 class="text-yellow-500 font-bold tracking-[0.2em] uppercase mb-6 text-sm">
-                            <span class="text-xl align-middle mr-2">†</span> <span data-key="skillsTitle">Divine Gifts</span> <span class="text-xl align-middle ml-2">†</span>
-                        </h4>
-                        
-                        <!-- Centered Skills Grid/List -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 text-center">
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill1">Custom Systems & Architecture</div>
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill2">World Optimization & Purification</div>
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill3">Sacred Tools & Commandments</div>
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill4">Core Logic & Mechanics</div>
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill5">Environmental Creation</div>
-                            <div class="hover:text-yellow-400 transition-colors" data-key="skill6">User Interface Liturgy</div>
+                    <!-- Project 4 -->
+                    <div class="project-card p-6 flex flex-col justify-between group text-center">
+                        <div>
+                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj4Title">Grip Test</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj4Desc">Foundational work on interaction systems.</p>
                         </div>
+                        <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card p-6 flex flex-col justify-between group text-center">
+                        <div>
+                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj5Title">Dream Test</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj5Desc">An atmospheric recreation of a surreal environment.</p>
+                        </div>
+                        <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
                     </div>
                 </div>
-            </header>
+            </section>
 
-            <main>
-                <!-- Projects Section -->
-                <section id="projects" class="mb-32">
-                    <div class="ornament">❖</div>
-                    <h2 class="text-4xl md:text-5xl text-center text-yellow-100 mb-16" data-key="projectsHeader">The Creations</h2>
+            <!-- Pricing & Contact -->
+            <section class="max-w-2xl mx-auto text-center mb-24">
+                 <div class="project-card p-10">
+                    <h2 class="text-2xl text-yellow-200 mb-4" data-key="pricingHeader">Commissions</h2>
+                    
+                    <div class="text-4xl font-bold text-yellow-500 mb-2 font-serif">$10 - $20 <span class="text-base text-gray-500">USD</span></div>
+                    <p class="text-gray-400 text-sm italic mb-8" data-key="pricingDesc1">Rates depend on project complexity.</p>
+                    
+                    <div class="w-24 h-px bg-yellow-900 mx-auto mb-8"></div>
+                    
+                    <h3 class="text-xl text-white mb-3" data-key="contactHeader">Get in Touch</h3>
+                    <p class="text-gray-400 mb-8 px-4" data-key="contactDesc">I am currently open to new projects. Feel free to reach out via Discord.</p>
+                    
+                    <a href="https://discord.com" target="_blank" class="inline-flex items-center gap-2 text-yellow-500 hover:text-white transition-colors text-lg">
+                        <span class="font-bold">Discord:</span> <span>dr_waltz</span>
+                    </a>
+                 </div>
+            </section>
+        </main>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        
-                        <!-- Project 1 -->
-                        <div class="holy-card p-8 flex flex-col justify-between group text-center">
-                            <div>
-                                <div class="text-yellow-600 text-3xl mb-4 opacity-50">I</div>
-                                <h3 class="text-2xl text-yellow-400 group-hover:text-white transition-colors" data-key="proj1Title">Platformer System</h3>
-                                <div class="w-12 h-px bg-yellow-800 mx-auto my-4"></div>
-                                <p class="text-gray-400 text-sm leading-relaxed" data-key="proj1Desc">A movement system forged to test the boundaries of agility.</p>
-                            </div>
-                            <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="mt-8 epic-btn text-xs" data-key="playBtn">Witness It</a>
-                        </div>
-
-                        <!-- Project 2 -->
-                        <div class="holy-card p-8 flex flex-col justify-between group text-center">
-                            <div>
-                                <div class="text-yellow-600 text-3xl mb-4 opacity-50">II</div>
-                                <h3 class="text-2xl text-yellow-400 group-hover:text-white transition-colors" data-key="proj2Title">Untitled Game</h3>
-                                <div class="w-12 h-px bg-yellow-800 mx-auto my-4"></div>
-                                <p class="text-gray-400 text-sm leading-relaxed" data-key="proj2Desc">A modern testament, currently evolving in the void.</p>
-                            </div>
-                            <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="mt-8 epic-btn text-xs" data-key="playBtn">Witness It</a>
-                        </div>
-
-                        <!-- Project 3 -->
-                        <div class="holy-card p-8 flex flex-col justify-between group text-center">
-                            <div>
-                                <div class="text-yellow-600 text-3xl mb-4 opacity-50">III</div>
-                                <h3 class="text-2xl text-yellow-400 group-hover:text-white transition-colors" data-key="proj3Title">Hunt</h3>
-                                <div class="w-12 h-px bg-yellow-800 mx-auto my-4"></div>
-                                <p class="text-gray-400 text-sm leading-relaxed" data-key="proj3Desc">A visual spectacle of 3D particles and pursuit.</p>
-                            </div>
-                            <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="mt-8 epic-btn text-xs" data-key="playBtn">Witness It</a>
-                        </div>
-                        
-                        <!-- Project 4 -->
-                        <div class="holy-card p-8 flex flex-col justify-between group text-center">
-                            <div>
-                                <div class="text-yellow-600 text-3xl mb-4 opacity-50">IV</div>
-                                <h3 class="text-2xl text-yellow-400 group-hover:text-white transition-colors" data-key="proj4Title">Grip Test</h3>
-                                <div class="w-12 h-px bg-yellow-800 mx-auto my-4"></div>
-                                <p class="text-gray-400 text-sm leading-relaxed" data-key="proj4Desc">The early foundations of my coding knowledge.</p>
-                            </div>
-                            <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="mt-8 epic-btn text-xs" data-key="playBtn">Witness It</a>
-                        </div>
-
-                        <!-- Project 5 -->
-                        <div class="holy-card p-8 flex flex-col justify-between group text-center">
-                            <div>
-                                <div class="text-yellow-600 text-3xl mb-4 opacity-50">V</div>
-                                <h3 class="text-2xl text-yellow-400 group-hover:text-white transition-colors" data-key="proj5Title">Dream Test</h3>
-                                <div class="w-12 h-px bg-yellow-800 mx-auto my-4"></div>
-                                <p class="text-gray-400 text-sm leading-relaxed" data-key="proj5Desc">A recreation of a vision from the dream world.</p>
-                            </div>
-                            <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="mt-8 epic-btn text-xs" data-key="playBtn">Witness It</a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Pricing & Contact Centered -->
-                <section class="max-w-3xl mx-auto text-center mb-24">
-                     <div class="holy-card p-12 relative overflow-visible">
-                        <!-- Crown Icon -->
-                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 text-5xl text-yellow-500 drop-shadow-lg">♛</div>
-                        
-                        <h2 class="text-3xl text-yellow-100 mb-6 mt-4" data-key="pricingHeader">Commission Covenant</h2>
-                        
-                        <div class="text-5xl font-bold text-yellow-400 mb-2 font-serif">$10 - $20 <span class="text-xl text-yellow-700">USD</span></div>
-                        <p class="text-gray-400 italic mb-8" data-key="pricingDesc1">Rates judged by complexity.</p>
-                        
-                        <div class="w-full h-px bg-gradient-to-r from-transparent via-yellow-900 to-transparent mb-8"></div>
-                        
-                        <h3 class="text-2xl text-white mb-4" data-key="contactHeader">Communion</h3>
-                        <p class="text-gray-300 mb-8 px-4" data-key="contactDesc">I am always open to forging new covenants. Let us build greatness together.</p>
-                        
-                        <a href="https://discord.com" target="_blank" class="inline-flex items-center gap-3 text-yellow-500 hover:text-white transition-colors text-lg tracking-wider border-b border-yellow-500/50 hover:border-white pb-1">
-                            <span>Discord: dr_waltz</span>
-                        </a>
-                     </div>
-                </section>
-            </main>
-
-            <footer class="text-center pb-8 pt-8">
-                <div class="ornament text-sm opacity-50">Ω</div>
-                <p class="text-yellow-700/60 font-serif text-sm" data-key="footerText">&copy; 2024 SoloWaltz. Soli Deo Gloria.</p>
-            </footer>
-        </div>
+        <footer class="text-center pb-8 pt-8 border-t border-white/5">
+            <p class="text-gray-600 font-serif text-sm" data-key="footerText">&copy; 2024 SoloWaltz. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
@@ -448,79 +279,68 @@
             // --- TRANSLATION DATA ---
             const translations = {
                 en: {
-                    bootContinue: "Enter Creation",
                     title: "SoloWaltz",
-                    subtitle: "Architect of Roblox Worlds",
-                    experienceTitle: "The Journey",
-                    experienceDesc: "\"Walking the path of creation for years, honing the craft of logic and structure within the engine.\"",
-                    skillsTitle: "Divine Gifts",
-                    skill1: "Custom Systems & Architecture",
-                    skill2: "World Optimization & Purification",
-                    skill3: "Sacred Tools & Commandments",
-                    skill4: "Core Logic & Mechanics",
-                    skill5: "Environmental Creation",
-                    skill6: "User Interface Liturgy",
-                    projectsHeader: "The Creations",
+                    subtitle: "Roblox Developer & Builder",
+                    experienceDesc: "\"Dedicated to creating immersive experiences through clean logic and detailed world-building.\"",
+                    skillsTitle: "Core Expertise",
+                    skill1: "Custom Systems Architecture",
+                    skill2: "Game Optimization",
+                    skill3: "Development Tools",
+                    skill4: "Core Mechanics",
+                    skill5: "Environmental Design",
+                    skill6: "User Interface Design",
                     proj1Title: "Platformer System",
-                    proj1Desc: "A movement system forged to test the boundaries of agility.",
+                    proj1Desc: "A robust movement system designed for precision and agility.",
                     proj2Title: "Untitled Game",
-                    proj2Desc: "A modern testament, currently evolving in the void.",
+                    proj2Desc: "A modern prototype currently in active development.",
                     proj3Title: "Hunt",
-                    proj3Desc: "A visual spectacle of 3D particles and pursuit.",
+                    proj3Desc: "A visual showcase focusing on particle effects and pursuit mechanics.",
                     proj4Title: "Grip Test",
-                    proj4Desc: "The early foundations of my coding knowledge.",
+                    proj4Desc: "Foundational work on interaction systems.",
                     proj5Title: "Dream Test",
-                    proj5Desc: "A recreation of a vision from the dream world.",
-                    playBtn: "Witness It",
-                    pricingHeader: "Commission Covenant",
-                    pricingDesc1: "Rates judged by complexity.",
-                    pricingDesc2: "Send forth your vision for a specific prophecy.",
-                    contactHeader: "Communion",
-                    contactDesc: "I am always open to forging new covenants. Let us build greatness together.",
-                    footerText: "&copy; 2024 SoloWaltz. Soli Deo Gloria.",
+                    proj5Desc: "An atmospheric recreation of a surreal environment.",
+                    playBtn: "View Project",
+                    pricingHeader: "Commissions",
+                    pricingDesc1: "Rates depend on project complexity.",
+                    contactHeader: "Get in Touch",
+                    contactDesc: "I am currently open to new projects. Feel free to reach out via Discord.",
+                    footerText: "&copy; 2024 SoloWaltz. All rights reserved.",
                     langBtn: "Español"
                 },
                 es: {
-                    bootContinue: "Entrar a la Creación",
                     title: "SoloWaltz",
-                    subtitle: "Arquitecto de Mundos Roblox",
-                    experienceTitle: "El Viaje",
-                    experienceDesc: "\"Caminando el sendero de la creación por años, perfeccionando el arte de la lógica y la estructura en el motor.\"",
-                    skillsTitle: "Dones Divinos",
-                    skill1: "Arquitectura y Sistemas Propios",
-                    skill2: "Optimización y Purificación de Mundos",
-                    skill3: "Herramientas Sagradas y Mandamientos",
-                    skill4: "Lógica y Mecánicas Centrales",
-                    skill5: "Creación de Entornos",
-                    skill6: "Liturgia de Interfaz de Usuario",
-                    projectsHeader: "Las Creaciones",
+                    subtitle: "Desarrollador y Builder Roblox",
+                    experienceDesc: "\"Dedicado a crear experiencias inmersivas a través de lógica limpia y construcción detallada.\"",
+                    skillsTitle: "Experiencia Principal",
+                    skill1: "Arquitectura de Sistemas",
+                    skill2: "Optimización de Juegos",
+                    skill3: "Herramientas de Desarrollo",
+                    skill4: "Mecánicas Centrales",
+                    skill5: "Diseño de Entornos",
+                    skill6: "Diseño de Interfaz",
                     proj1Title: "Sistema de Plataformas",
-                    proj1Desc: "Un sistema de movimiento forjado para probar los límites de la agilidad.",
+                    proj1Desc: "Un sistema de movimiento robusto diseñado para precisión y agilidad.",
                     proj2Title: "Juego Sin Título",
-                    proj2Desc: "Un testamento moderno, evolucionando actualmente en el vacío.",
+                    proj2Desc: "Un prototipo moderno actualmente en desarrollo activo.",
                     proj3Title: "Cazar",
-                    proj3Desc: "Un espectáculo visual de partículas 3D y persecución.",
+                    proj3Desc: "Una muestra visual enfocada en efectos de partículas y mecánicas de persecución.",
                     proj4Title: "Prueba de Agarre",
-                    proj4Desc: "Los cimientos tempranos de mi conocimiento.",
+                    proj4Desc: "Trabajo fundamental en sistemas de interacción.",
                     proj5Title: "Prueba de Sueño",
-                    proj5Desc: "Una recreación de una visión del mundo de los sueños.",
-                    playBtn: "Atestiguar",
-                    pricingHeader: "Pacto de Comisión",
-                    pricingDesc1: "Tarifas juzgadas por complejidad.",
-                    pricingDesc2: "Envía tu visión para una profecía específica.",
-                    contactHeader: "Comunión",
-                    contactDesc: "Siempre estoy abierto a forjar nuevos pactos. Construyamos grandeza juntos.",
-                    footerText: "&copy; 2024 SoloWaltz. Soli Deo Gloria.",
+                    proj5Desc: "Una recreación atmosférica de un entorno surrealista.",
+                    playBtn: "Ver Proyecto",
+                    pricingHeader: "Comisiones",
+                    pricingDesc1: "Tarifas dependen de la complejidad.",
+                    contactHeader: "Contacto",
+                    contactDesc: "Actualmente estoy disponible para nuevos proyectos. Contáctame vía Discord.",
+                    footerText: "&copy; 2024 SoloWaltz. Todos los derechos reservados.",
                     langBtn: "English"
                 }
             };
             let currentLanguage = 'en';
 
             // --- ELEMENTS ---
-            const mainContent = document.getElementById('main-content');
             const music = document.getElementById('background-music');
-            const bootScreen = document.getElementById('boot-screen');
-            const fiatLux = document.getElementById('fiat-lux');
             
             // --- TRANSLATION FUNCTION ---
             const setLanguage = (lang) => {
@@ -532,55 +352,9 @@
                 });
             };
 
-            // --- INITIALIZATION (DIVINE RADIANCE SEQUENCE) ---
-            const startPortfolio = () => {
-                // 1. Play Music
-                playMusicWithFadeIn();
-
-                // 2. Trigger THE RADIANCE (Gentle Gold)
-                fiatLux.style.animation = "divineLight 3.5s ease-in-out forwards";
-                
-                // 3. Hide Boot Screen & Reveal Content during expansion (approx 0.5s in)
-                setTimeout(() => {
-                    bootScreen.style.display = 'none';
-                    mainContent.style.visibility = 'visible';
-                    mainContent.classList.add('content-visible');
-                    document.body.style.overflow = 'auto';
-                    fetchRobloxAvatar('1078236215');
-                }, 800); 
-
-                // 4. Cleanup Div after animation
-                setTimeout(() => {
-                    fiatLux.style.display = 'none';
-                }, 3600);
-            };
-
-            bootScreen.addEventListener('click', startPortfolio, { once: true });
-            document.addEventListener('keydown', (e) => {
-                if(e.key === 'Enter') {
-                    startPortfolio();
-                }
-            }, { once: true });
-
-            function playMusicWithFadeIn() {
-                music.volume = 0;
-                music.play().catch(error => console.error("Autoplay was blocked:", error));
-                let currentVolume = 0;
-                const targetVolume = 0.35; 
-                const fadeAudioIn = setInterval(() => {
-                    if (currentVolume < targetVolume) {
-                        currentVolume = Math.min(targetVolume, currentVolume + 0.01);
-                        music.volume = currentVolume;
-                    } else {
-                        clearInterval(fadeAudioIn);
-                    }
-                }, 100);
-            }
-
             // --- AVATAR FETCH ---
             async function fetchRobloxAvatar(userId, retries = 3) {
                 const avatarImage = document.getElementById('roblox-avatar');
-                // Increased size for the new layout
                 const apiUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=420x420&format=Png&isCircular=false`;
                 const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
                 try {
@@ -599,16 +373,18 @@
                 }
             }
 
+            // Start avatar fetch immediately
+            fetchRobloxAvatar('1078236215');
+
             // --- UI CONTROLS ---
             const musicToggleButton = document.getElementById('music-toggle');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
             const langToggleButton = document.getElementById('lang-toggle');
             
-            pauseIcon.classList.remove('hidden'); 
-            
             musicToggleButton.addEventListener('click', () => {
                 if (music.paused) {
+                    music.volume = 0.3; // Set decent volume
                     music.play();
                     playIcon.classList.add('hidden');
                     pauseIcon.classList.remove('hidden');
