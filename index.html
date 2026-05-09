@@ -132,13 +132,6 @@
             </div>
         </div>
         
-        <!-- AVATAR CENTERPIECE (Tapa el botón de play de YouTube) -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-white/80 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-brand-accent relative ring-8 ring-black/20 backdrop-blur-sm">
-                <img id="roblox-avatar" src="https://placehold.co/420x420/2B3E5C/FFFFFF?text=..." alt="SoloWaltz" class="w-full h-full object-cover relative z-10">
-            </div>
-        </div>
-
         <!-- Capa degradada en la parte inferior para transición suave hacia la siguiente sección -->
         <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-brand-bg to-transparent z-10 pointer-events-none"></div>
     </section>
@@ -208,12 +201,9 @@
             <!-- Caja 3: Avatar/Identidad -->
             <div class="tech-card bg-brand-accent text-white p-8 rounded-2xl shadow-premium flex items-center gap-6 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 z-0"></div>
-                
-                <!-- Reemplazamos la imagen por un ícono ya que el avatar ahora está en el video -->
-                <div class="w-16 h-16 rounded-full border-2 border-white/20 overflow-hidden relative z-10 flex-shrink-0 bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <div class="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden relative z-10 flex-shrink-0 bg-brand-bg">
+                    <img id="roblox-avatar" src="https://placehold.co/200x200/FFFFFF/2B3E5C?text=..." alt="SoloWaltz" class="w-full h-full object-cover">
                 </div>
-
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold">SoloWaltz</h3>
                     <p class="text-white/80 font-mono text-sm mt-1">@dr_waltz</p>
