@@ -132,6 +132,13 @@
             </div>
         </div>
         
+        <!-- AVATAR CENTERPIECE (Tapa el botón de play de YouTube) -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-white/80 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden bg-brand-accent relative ring-8 ring-black/20 backdrop-blur-sm">
+                <img id="roblox-avatar" src="https://placehold.co/420x420/2B3E5C/FFFFFF?text=..." alt="SoloWaltz" class="w-full h-full object-cover relative z-10">
+            </div>
+        </div>
+
         <!-- Capa degradada en la parte inferior para transición suave hacia la siguiente sección -->
         <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-brand-bg to-transparent z-10 pointer-events-none"></div>
     </section>
@@ -201,9 +208,12 @@
             <!-- Caja 3: Avatar/Identidad -->
             <div class="tech-card bg-brand-accent text-white p-8 rounded-2xl shadow-premium flex items-center gap-6 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 z-0"></div>
-                <div class="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden relative z-10 flex-shrink-0 bg-brand-bg">
-                    <img id="roblox-avatar" src="https://placehold.co/200x200/FFFFFF/2B3E5C?text=..." alt="SoloWaltz" class="w-full h-full object-cover">
+                
+                <!-- Reemplazamos la imagen por un ícono ya que el avatar ahora está en el video -->
+                <div class="w-16 h-16 rounded-full border-2 border-white/20 overflow-hidden relative z-10 flex-shrink-0 bg-white/10 flex items-center justify-center backdrop-blur-sm">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </div>
+
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold">SoloWaltz</h3>
                     <p class="text-white/80 font-mono text-sm mt-1">@dr_waltz</p>
@@ -229,15 +239,49 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Bio & Background -->
-            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col md:flex-row gap-8 items-start">
-                <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
-                    <!-- Icono CPU / Robótica -->
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+            
+            <!-- Bio & Background Mejorado (Con Grid de Estadísticas) -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col lg:flex-row gap-8 items-stretch">
+                <!-- Texto principal -->
+                <div class="flex gap-6 w-full lg:w-3/5">
+                    <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
+                        <!-- Icono CPU / Robótica -->
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-xl font-bold mb-3" data-key="aboutBioTitle">Profile & Background</h3>
+                        <p class="text-brand-muted leading-relaxed" data-key="aboutBioDesc">I apply structured, highly logical architecture to game development. Operating as a dedicated full-time professional, I guarantee elite results through rigorous engineering standards.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-3" data-key="aboutBioTitle">Profile & Background</h3>
-                    <p class="text-brand-muted leading-relaxed" data-key="aboutBioDesc">At 20 years old, I bring 6 years of continuous, deep-level experience within the Roblox Studio engine. With technical training in Robotics-Oriented Programming, I apply structured, highly logical architecture to game development, operating as a dedicated full-time professional to guarantee elite results.</p>
+
+                <!-- Grid de estadísticas/habilidades -->
+                <div class="w-full lg:w-2/5 grid grid-cols-2 gap-3 pl-0 lg:pl-8 border-t lg:border-t-0 lg:border-l border-brand-border pt-6 lg:pt-0">
+                    <!-- Stat 1 -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-brand-border/60 flex flex-col justify-center">
+                        <div class="text-2xl font-black text-brand-text mb-0.5">6<span class="text-brand-accent text-sm font-bold ml-1">YRS</span></div>
+                        <div class="text-[10px] text-brand-muted font-bold uppercase tracking-wider" data-key="stat1">Engine Exp</div>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-brand-border/60 flex flex-col justify-center">
+                        <div class="text-2xl font-black text-brand-text mb-0.5">20<span class="text-brand-accent text-sm font-bold ml-1">Y/O</span></div>
+                        <div class="text-[10px] text-brand-muted font-bold uppercase tracking-wider" data-key="stat2">Age</div>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-brand-border/60 col-span-2 flex items-center justify-between">
+                        <div>
+                            <div class="text-sm font-bold text-brand-text mb-0.5">Robotics Logic</div>
+                            <div class="text-[10px] text-brand-muted font-bold uppercase tracking-wider" data-key="stat3">Academic Background</div>
+                        </div>
+                        <svg class="text-brand-accent opacity-50" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="bg-brand-accent rounded-xl p-4 border border-brand-accent col-span-2 flex items-center justify-between text-white shadow-md">
+                        <span class="text-sm font-bold tracking-wide" data-key="stat4">Full-Time Active</span>
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -261,7 +305,7 @@
                 <p class="text-brand-muted" data-key="aboutTechDesc">Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.</p>
             </div>
 
-            <!-- NUEVO: Industry Experience -->
+            <!-- Industry Experience -->
             <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col md:flex-row gap-8 items-start">
                 <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
                     <!-- Icono de Trofeo / Visitas / Contrato -->
@@ -448,7 +492,11 @@
                     bentoDesc3: "Strict server-authoritative logic. Designing networks that inherently reject exploits and unauthorized state changes.",
                     aboutHeader: "The Architect",
                     aboutBioTitle: "Profile & Background",
-                    aboutBioDesc: "At 20 years old, I bring 6 years of continuous, deep-level experience within the Roblox Studio engine. With technical training in Robotics-Oriented Programming, I apply structured, highly logical architecture to game development, operating as a dedicated full-time professional to guarantee elite results.",
+                    aboutBioDesc: "I apply structured, highly logical architecture to game development. Operating as a dedicated full-time professional, I guarantee elite results through rigorous engineering standards.",
+                    stat1: "Engine Exp",
+                    stat2: "Age",
+                    stat3: "Academic Background",
+                    stat4: "Full-Time Active",
                     aboutVfxTitle: "VFX & Game Feel",
                     aboutVfxDesc: "Visual Effects (VFX) design with a strong focus on 'game feel'. Creating 'juicy', highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.",
                     aboutTechTitle: "Full-Stack & Frameworks",
@@ -487,7 +535,11 @@
                     bentoDesc3: "Lógica autoritativa del servidor estricta. Diseñando redes que rechazan exploits de forma inherente.",
                     aboutHeader: "El Arquitecto",
                     aboutBioTitle: "Perfil y Trayectoria",
-                    aboutBioDesc: "A mis 20 años de edad, aporto 6 años de experiencia continua en el motor de Roblox Studio. Con formación técnica en Programación Orientada a la Robótica, aplico una lógica altamente estructurada al desarrollo de juegos, operando como un profesional a tiempo completo para garantizar resultados de élite.",
+                    aboutBioDesc: "Aplico una arquitectura estructurada y altamente lógica al desarrollo. Como profesional a tiempo completo, garantizo resultados de élite mediante rigurosos estándares de ingeniería.",
+                    stat1: "Exp. en Motor",
+                    stat2: "Edad",
+                    stat3: "Base Académica",
+                    stat4: "Dedicación Full-Time",
                     aboutVfxTitle: "VFX y Game Feel",
                     aboutVfxDesc: "Diseño de efectos visuales (VFX) con un fuerte enfoque en el 'game feel'. Creando experiencias 'juicy' y altamente responsivas que elevan el impacto, la satisfacción y la inmersión del jugador.",
                     aboutTechTitle: "Full-Stack y Frameworks",
