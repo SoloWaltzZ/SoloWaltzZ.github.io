@@ -276,34 +276,69 @@
             </div>
 
             <!-- VFX & Game Feel -->
-            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col">
-                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
-                    <!-- Icono Rayo / VFX -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                        <!-- Icono Rayo / VFX -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-key="aboutVfxTitle">VFX & Game Feel</h3>
+                    <p class="text-brand-muted mb-6" data-key="aboutVfxDesc">Visual Effects (VFX) design with a strong focus on "game feel". Creating "juicy", highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3" data-key="aboutVfxTitle">VFX & Game Feel</h3>
-                <p class="text-brand-muted" data-key="aboutVfxDesc">Visual Effects (VFX) design with a strong focus on "game feel". Creating "juicy", highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.</p>
+                <!-- Badges de VFX -->
+                <div class="flex flex-wrap gap-2 mt-auto">
+                    <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-md text-[10px] font-bold uppercase tracking-wider" data-key="vfxTag1">Particles</span>
+                    <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md text-[10px] font-bold uppercase tracking-wider" data-key="vfxTag2">Camera Shakes</span>
+                    <span class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-md text-[10px] font-bold uppercase tracking-wider" data-key="vfxTag3">Hit Feedback</span>
+                </div>
             </div>
 
             <!-- Full-Stack & Frameworks -->
-            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col">
-                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
-                    <!-- Icono Capas / Stack -->
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                        <!-- Icono Capas / Stack -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-key="aboutTechTitle">Full-Stack & Frameworks</h3>
+                    <p class="text-brand-muted mb-6" data-key="aboutTechDesc">Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3" data-key="aboutTechTitle">Full-Stack & Frameworks</h3>
-                <p class="text-brand-muted" data-key="aboutTechDesc">Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.</p>
+                <!-- Frameworks en estilo código -->
+                <div class="flex flex-wrap gap-2 mt-auto font-mono text-xs">
+                    <span class="px-3 py-1.5 bg-slate-800 text-slate-200 rounded-md shadow-inner">Knit</span>
+                    <span class="px-3 py-1.5 bg-slate-800 text-slate-200 rounded-md shadow-inner">Warp</span>
+                    <span class="px-3 py-1.5 bg-slate-800 text-slate-200 rounded-md shadow-inner">ProfileService</span>
+                </div>
             </div>
 
-            <!-- Industry Experience -->
-            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col md:flex-row gap-8 items-start">
-                <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
-                    <!-- Icono de Trofeo / Visitas / Contrato -->
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <!-- Industry Experience Mejorado -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col lg:flex-row gap-8 items-stretch">
+                <!-- Texto principal -->
+                <div class="flex gap-6 w-full lg:w-3/5">
+                    <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
+                        <!-- Icono de Trofeo / Visitas / Contrato -->
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-xl font-bold mb-3" data-key="aboutExpTitle">Industry Track Record</h3>
+                        <p class="text-brand-muted leading-relaxed" data-key="aboutExpDesc">Proven experience delivering high-impact updates for games with millions of visits. Highly adaptable workflow, whether executing independent commissions or integrating into established teams under medium to long-term contracts.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-3" data-key="aboutExpTitle">Industry Track Record</h3>
-                    <p class="text-brand-muted leading-relaxed" data-key="aboutExpDesc">Proven experience delivering high-impact updates for games with millions of visits. Highly adaptable workflow, whether executing independent commissions or integrating into established teams under medium to long-term contracts.</p>
+
+                <!-- Grid de hitos de industria -->
+                <div class="w-full lg:w-2/5 flex flex-col justify-center pl-0 lg:pl-8 border-t lg:border-t-0 lg:border-l border-brand-border pt-6 lg:pt-0 gap-3">
+                    <!-- Hito 1: Visitas -->
+                    <div class="flex items-center gap-4 bg-slate-50 p-3.5 rounded-xl border border-brand-border/60">
+                        <div class="text-3xl font-black text-brand-accent tracking-tighter">5M<span class="text-lg text-brand-muted">+</span></div>
+                        <div class="text-xs font-bold text-brand-muted uppercase tracking-wider leading-tight" data-key="expStat1">Visits<br>Scale</div>
+                    </div>
+                    <!-- Hito 2: Contratos -->
+                    <div class="flex items-center gap-4 bg-slate-50 p-3.5 rounded-xl border border-brand-border/60">
+                        <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 border border-green-200 flex items-center justify-center shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <div class="text-xs font-bold text-brand-muted uppercase tracking-wider leading-tight" data-key="expStat2">Long-Term<br>Contracts</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -489,10 +524,15 @@
                     stat4: "Full-Time Active",
                     aboutVfxTitle: "VFX & Game Feel",
                     aboutVfxDesc: "Visual Effects (VFX) design with a strong focus on 'game feel'. Creating 'juicy', highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.",
+                    vfxTag1: "Particles",
+                    vfxTag2: "Camera Shakes",
+                    vfxTag3: "Hit Feedback",
                     aboutTechTitle: "Full-Stack & Frameworks",
                     aboutTechDesc: "Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.",
                     aboutExpTitle: "Industry Track Record",
                     aboutExpDesc: "Proven experience delivering high-impact updates for games with millions of visits. Highly adaptable workflow, whether executing independent commissions or integrating into established teams under medium to long-term contracts.",
+                    expStat1: "Visits<br>Scale",
+                    expStat2: "Long-Term<br>Contracts",
                     projectsHeader: "Technical Showcase",
                     proj1Title: "Platformer System",
                     proj1Desc: "Advanced platformer movement architecture.",
@@ -532,10 +572,15 @@
                     stat4: "Dedicación Full-Time",
                     aboutVfxTitle: "VFX y Game Feel",
                     aboutVfxDesc: "Diseño de efectos visuales (VFX) con un fuerte enfoque en el 'game feel'. Creando experiencias 'juicy' y altamente responsivas que elevan el impacto, la satisfacción y la inmersión del jugador.",
+                    vfxTag1: "Partículas",
+                    vfxTag2: "Cámara",
+                    vfxTag3: "Impactos",
                     aboutTechTitle: "Full-Stack y Frameworks",
                     aboutTechDesc: "Desarrollo integral tanto en Front-End (UI/UX) como en la lógica de servidores Back-End. Dominio absoluto de frameworks modernos y estándares de la industria como Knit, Warp y ProfileService.",
                     aboutExpTitle: "Trayectoria en la Industria",
                     aboutExpDesc: "Experiencia demostrada en el desarrollo y mantenimiento de juegos con millones de visitas. Flujo de trabajo adaptable, ya sea operando en comisiones independientes o integrándome a equipos bajo contratos de mediano y largo plazo.",
+                    expStat1: "Escala<br>De Visitas",
+                    expStat2: "Contratos<br>Largo Plazo",
                     projectsHeader: "Muestra Técnica",
                     proj1Title: "Sistema de Plataformas",
                     proj1Desc: "Movimiento avanzado de plataformas.",
