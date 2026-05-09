@@ -363,7 +363,7 @@
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
-        function onYouTubeIframeAPIReady() {
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('yt-player', {
                 videoId: 'q5uBce7oecg',
                 playerVars: {
@@ -376,26 +376,26 @@
                     'modestbranding': 1,
                     'playsinline': 1,
                     'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4,g9gaAglqnRQ',
-                    'vq': 'hd1080'
+                    'enablejsapi': 1,
+                    'origin': window.location.origin
                 },
                 events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onReady': function(event) {
+                        event.target.mute();
+                        event.target.setPlaybackQuality('hd1080');
+                        event.target.playVideo();
+                    },
+                    'onStateChange': function(event) {
+                        if (event.data == YT.PlayerState.PLAYING) {
+                            event.target.setPlaybackQuality('hd1080');
+                        }
+                    },
+                    'onError': function(event) {
+                        console.error('YouTube Player Error:', event.data);
+                    }
                 }
             });
-        }
-
-        function onPlayerReady(event) {
-            event.target.mute();
-            event.target.setPlaybackQuality('hd1080');
-            event.target.playVideo();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING) {
-                event.target.setPlaybackQuality('hd1080');
-            }
-        }
+        };
     </script>
 
     <script>
