@@ -3,344 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoloWaltz - Roblox Developer</title>
+    <title>SoloWaltz | Exclusive Software Architecture</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="SoloWaltz - Roblox Programmer">
-    <meta property="og:description" content="Forging worlds and breathing life into mechanics on Roblox.">
-    <meta property="og:image" content="https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=1078236215&size=420x420&format=Png&isCircular=false">
-    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Cinzel (Headers), Crimson Text (Body) -->
+    <!-- Google Fonts: Plus Jakarta Sans (Modern Tech) & JetBrains Mono (Code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FCFCFC',       // Ultra clean white
+                            surface: '#FFFFFF',  // Pure white for cards
+                            border: '#E5E7EB',   // Subtle gray borders
+                            text: '#0F172A',     // Slate 900 for high readability
+                            muted: '#64748B',    // Slate 500 for secondary text
+                            // Color from the video: Lujo, Poder, Elegancia
+                            accent: '#2B3E5C',   // Navy Blue for premium exclusivity
+                            accentLight: '#F3E3E2' // Cream accent
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 20px 25px -5px rgba(0, 0, 0, 0.02)',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* --- THEME CONFIGURATION --- */
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f9e5a1;
-            --gold-dark: #8a6e18;
-            --dark-void: #0a0a0a;
-            --card-bg: rgba(20, 20, 20, 0.95);
-        }
-
         body {
-            font-family: 'Crimson Text', serif;
-            background-color: var(--dark-void);
-            color: #e0e0e0;
+            background-color: var(--brand-bg);
+            color: var(--brand-text);
+            /* Tech grid background */
             background-image: 
-                radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 80%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
-            font-family: 'Cinzel', serif;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* Fade in animation */
+        body { animation: fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- FADE IN ON LOAD --- */
-        body {
-            animation: fadeInPage 1.5s ease-out forwards;
+        /* Glassmorphism Nav */
+        .glass-nav {
+            background: rgba(252, 252, 252, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
         }
 
-        @keyframes fadeInPage {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        /* Tech Hover Effects */
+        .tech-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tech-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(43, 62, 92, 0.1);
+            border-color: rgba(43, 62, 92, 0.3);
         }
 
-        /* --- CARDS --- */
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.4s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-dark);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
-        }
-
-        /* --- AVATAR --- */
-        .avatar-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-        }
-        
-        .avatar-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 105%; height: 105%;
-            border-radius: 50%;
-            border: 1px solid var(--gold-dark);
-            opacity: 0.6;
-            transition: all 0.5s ease;
-        }
-
-        .avatar-container:hover .avatar-ring {
-            width: 110%; height: 110%;
-            border-color: var(--gold);
-            opacity: 1;
-        }
-
-        /* --- BUTTONS --- */
-        .gold-btn {
-            background: transparent;
-            border: 1px solid var(--gold-dark);
-            color: var(--gold);
-            padding: 0.6rem 1.5rem;
-            font-family: 'Cinzel', serif;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .gold-btn:hover {
-            background: var(--gold-dark);
-            color: #fff;
-            border-color: var(--gold);
-        }
-
-        /* --- DIVIDERS --- */
-        .ornament {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem 0;
-            color: var(--gold-dark);
-            font-size: 1.2rem;
-            opacity: 0.7;
-        }
-        
-        .ornament::before, .ornament::after {
-            content: '';
-            height: 1px;
-            width: 60px;
-            background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-            margin: 0 1rem;
-        }
-
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FCFCFC; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-brand-accent selection:text-white">
 
     <!-- Audio Element -->
     <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/End_Credits_Music_Cyberpunk_2077_w7ho9h.mp3" loop></audio>
 
-    <!-- UI Buttons (Bottom Left) -->
-    <div class="fixed bottom-8 left-8 flex gap-4 z-50">
-        <button id="lang-toggle" data-key="langBtn" class="gold-btn backdrop-blur-md bg-black/50">Español</button>
-        <button id="music-toggle" class="gold-btn backdrop-blur-md bg-black/50 flex items-center gap-2">
-            <span class="mr-1">Music</span>
-            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
-        </button>
-    </div>
-
-    <!-- Main Container -->
-    <div class="container mx-auto max-w-5xl px-4 py-16">
-        
-        <!-- Header Section -->
-        <header class="flex flex-col items-center text-center mb-20 relative z-10">
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3 text-brand-text font-bold tracking-tight text-xl">
+                <div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white text-sm">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                SoloWaltz
+            </div>
             
-            <!-- Avatar -->
-            <div class="avatar-container mb-8 group cursor-pointer">
-                <div class="avatar-ring"></div>
-                <div class="absolute inset-0 rounded-full bg-black overflow-hidden border border-gray-800">
-                    <img id="roblox-avatar" src="https://placehold.co/200x200/0a0a0a/d4af37?text=LOADING" alt="Roblox Avatar" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500">
+            <div class="flex gap-6 text-sm font-medium items-center text-brand-muted">
+                <button id="music-toggle" class="hover:text-brand-accent transition-colors flex items-center gap-2">
+                    <svg id="music-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    <span data-key="musicBtn" class="hidden sm:inline">Audio</span>
+                </button>
+                <div class="w-px h-4 bg-brand-border"></div>
+                <button id="lang-toggle" data-key="langBtn" class="hover:text-brand-accent transition-colors">Español</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden relative">
+        <!-- Abstract shape -->
+        <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-gradient-to-br from-brand-accentLight/40 to-transparent rounded-full blur-3xl -z-10 opacity-60"></div>
+
+        <div class="max-w-4xl mx-auto text-center z-10 relative">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-brand-border shadow-sm mb-8">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-semibold tracking-wide text-brand-muted uppercase" data-key="heroBadge">Accepting Private Commissions</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-brand-text mb-6 leading-[1.1]">
+                <span data-key="heroTitle1">Engineering</span> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-slate-400" data-key="heroTitle2">Exclusive</span><br>
+                <span data-key="heroTitle3">Roblox Experiences.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-brand-muted max-w-2xl mx-auto mb-10 font-light" data-key="heroDesc">
+                Premium software architecture and highly optimized mechanics. Designed for scale, performance, and elite clientele.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-3 rounded-lg bg-brand-accent text-white font-medium hover:bg-opacity-90 transition-all shadow-lg shadow-brand-accent/20" data-key="btnProjects">
+                    Explore Architecture
+                </a>
+                <a href="https://discord.com" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-lg bg-white text-brand-text border border-brand-border font-medium hover:border-brand-accent hover:text-brand-accent transition-all" data-key="btnContact">
+                    Consult via Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENTO GRID (EXPERTISE) -->
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-brand-text" data-key="bentoHeader">Core Engineering</h2>
+            <div class="h-px bg-brand-border flex-grow ml-8"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Box 1: Architecture -->
+            <div class="md:col-span-2 tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-premium flex flex-col justify-between relative overflow-hidden group">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" data-key="bentoTitle1">Scalable Frameworks</h3>
+                    <p class="text-brand-muted max-w-md" data-key="bentoDesc1">Modular codebases built with modern Luau, ensuring your game logic can grow without accruing technical debt.</p>
+                </div>
+                <!-- Abstract Code Decoration -->
+                <div class="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity font-mono text-[8rem] font-bold text-brand-accent pointer-events-none">
+                    {}
                 </div>
             </div>
 
-            <!-- Title & Text -->
-            <h1 class="text-5xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-yellow-700 mb-2" data-key="title">SoloWaltz</h1>
-            <p class="text-xl md:text-2xl text-yellow-100/70 tracking-widest font-light" data-key="subtitle">Roblox Developer & Builder</p>
-            
-            <div class="ornament">✦</div>
-
-            <!-- Description & Skills -->
-            <div class="max-w-3xl space-y-8 text-lg text-gray-400">
-                <div class="text-center">
-                    <p data-key="experienceDesc" class="leading-relaxed text-xl italic font-serif">"Dedicated to creating immersive experiences through clean logic and detailed world-building."</p>
+            <!-- Box 2: Optimization -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-premium flex flex-col">
+                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </div>
-                
-                <div class="flex flex-col items-center mt-10">
-                    <h4 class="text-yellow-600 font-bold tracking-widest uppercase mb-6 text-xs border-b border-yellow-900 pb-2" data-key="skillsTitle">
-                        Core Expertise
-                    </h4>
+                <h3 class="text-xl font-bold mb-3" data-key="bentoTitle2">Engine Optimization</h3>
+                <p class="text-brand-muted" data-key="bentoDesc2">Deep memory profiling and rendering optimizations to hit that flawless 60 FPS mark.</p>
+            </div>
+
+            <!-- Box 3: Avatar/Identity -->
+            <div class="tech-card bg-brand-accent text-white p-8 rounded-2xl shadow-premium flex items-center gap-6 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 z-0"></div>
+                <div class="w-20 h-20 rounded-full border-2 border-white/20 overflow-hidden relative z-10 flex-shrink-0 bg-brand-bg">
+                    <img id="roblox-avatar" src="https://placehold.co/200x200/FFFFFF/2B3E5C?text=..." alt="SoloWaltz" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-xl font-bold">SoloWaltz</h3>
+                    <p class="text-white/80 font-mono text-sm mt-1">@dr_waltz</p>
+                </div>
+            </div>
+
+            <!-- Box 4: Security -->
+            <div class="md:col-span-2 tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-premium">
+                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3" data-key="bentoTitle3">Secure Infrastructure</h3>
+                <p class="text-brand-muted max-w-md" data-key="bentoDesc3">Strict server-authoritative logic. Designing networks that inherently reject exploits and unauthorized state changes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-brand-text" data-key="projectsHeader">Technical Showcase</h2>
+            <div class="h-px bg-brand-border flex-grow ml-8"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Proj 1 -->
+            <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj1Title">Platformer System</h3>
+                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+                </div>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj1Desc">High-precision movement architecture featuring custom physics calculations.</p>
+                <div class="flex gap-2 font-mono text-xs">
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Luau</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Kinematics</span>
+                </div>
+            </a>
+
+            <!-- Proj 2 -->
+            <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj2Title">Project Nebula</h3>
+                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+                </div>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj2Desc">Confidential next-gen prototype focusing on scalable state management.</p>
+                <div class="flex gap-2 font-mono text-xs">
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Framework</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Networking</span>
+                </div>
+            </a>
+
+            <!-- Proj 3 -->
+            <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj3Title">The Hunt</h3>
+                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+                </div>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj3Desc">Dynamic particle systems and complex pursuit logic optimization.</p>
+                <div class="flex gap-2 font-mono text-xs">
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">AI Logic</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">VFX</span>
+                </div>
+            </a>
+
+            <!-- Proj 4 -->
+            <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj4Title">Somnium Env.</h3>
+                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+                </div>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj4Desc">Atmospheric rendering and surreal lighting studies within the engine.</p>
+                <div class="flex gap-2 font-mono text-xs">
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Lighting</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Environment</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- PRICING / ENGAGEMENT -->
+    <section class="py-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl border border-brand-border shadow-premium overflow-hidden">
+                <div class="p-10 md:p-12 text-center border-b border-brand-border relative overflow-hidden">
+                    <!-- Tech accent line -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent"></div>
                     
-                    <!-- Skills Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-3 text-center text-gray-300">
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill1">Custom Systems Architecture</div>
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill2">Game Optimization</div>
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill3">Development Tools</div>
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill4">Core Mechanics</div>
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill5">Environmental Design</div>
-                        <div class="hover:text-yellow-400 transition-colors" data-key="skill6">User Interface Design</div>
+                    <h2 class="text-sm font-bold tracking-widest text-brand-muted uppercase mb-4 font-mono" data-key="pricingHeader">Premium Engagement</h2>
+                    <div class="flex justify-center items-start justify-center gap-1 mb-2">
+                        <span class="text-2xl mt-2 font-bold text-brand-muted">$</span>
+                        <span class="text-7xl font-extrabold text-brand-text">50</span>
+                        <span class="text-lg mt-auto mb-2 font-bold text-brand-muted uppercase">USD</span>
+                    </div>
+                    <p class="text-brand-muted font-medium" data-key="pricingSubtitle">Base project inception & architecture</p>
+                </div>
+                <div class="p-10 md:p-12 bg-slate-50">
+                    <ul class="space-y-4 mb-10 max-w-md mx-auto">
+                        <li class="flex items-center gap-3 text-brand-text">
+                            <svg class="text-green-500 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span data-key="pricingF1">Bespoke System Architecture</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-text">
+                            <svg class="text-green-500 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span data-key="pricingF2">Fully Documented Codebase</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-text">
+                            <svg class="text-green-500 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span data-key="pricingF3">Exclusive Intellectual Property</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-text">
+                            <svg class="text-green-500 shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span data-key="pricingF4">Direct Discord Communication</span>
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="https://discord.com" target="_blank" class="inline-block px-10 py-4 rounded-xl bg-brand-text text-white font-bold hover:bg-brand-accent transition-colors shadow-lg" data-key="btnContact2">
+                            Secure your project (dr_waltz)
+                        </a>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </section>
 
-        <main>
-            <!-- Projects Section -->
-            <section id="projects" class="mb-24">
-                <div class="ornament">Projects</div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Project 1 -->
-                    <div class="project-card p-6 flex flex-col justify-between group text-center">
-                        <div>
-                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj1Title">Platformer System</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj1Desc">A robust movement system designed for precision and agility.</p>
-                        </div>
-                        <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="project-card p-6 flex flex-col justify-between group text-center">
-                        <div>
-                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj2Title">Untitled Game</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj2Desc">A modern prototype currently in active development.</p>
-                        </div>
-                        <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="project-card p-6 flex flex-col justify-between group text-center">
-                        <div>
-                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj3Title">Hunt</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj3Desc">A visual showcase focusing on particle effects and pursuit mechanics.</p>
-                        </div>
-                        <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
-                    </div>
-                    
-                    <!-- Project 4 -->
-                    <div class="project-card p-6 flex flex-col justify-between group text-center">
-                        <div>
-                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj4Title">Grip Test</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj4Desc">Foundational work on interaction systems.</p>
-                        </div>
-                        <a href="https://www.roblox.com/games/6440727659/Sujetar-Test" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
-                    </div>
-
-                    <!-- Project 5 -->
-                    <div class="project-card p-6 flex flex-col justify-between group text-center">
-                        <div>
-                            <h3 class="text-xl text-yellow-500 mb-2" data-key="proj5Title">Dream Test</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6" data-key="proj5Desc">An atmospheric recreation of a surreal environment.</p>
-                        </div>
-                        <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="gold-btn mx-auto inline-block" data-key="playBtn">View Project</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing & Contact -->
-            <section class="max-w-2xl mx-auto text-center mb-24">
-                 <div class="project-card p-10">
-                    <h2 class="text-2xl text-yellow-200 mb-4" data-key="pricingHeader">Commissions</h2>
-                    
-                    <div class="text-4xl font-bold text-yellow-500 mb-2 font-serif">$10 - $20 <span class="text-base text-gray-500">USD</span></div>
-                    <p class="text-gray-400 text-sm italic mb-8" data-key="pricingDesc1">Rates depend on project complexity.</p>
-                    
-                    <div class="w-24 h-px bg-yellow-900 mx-auto mb-8"></div>
-                    
-                    <h3 class="text-xl text-white mb-3" data-key="contactHeader">Get in Touch</h3>
-                    <p class="text-gray-400 mb-8 px-4" data-key="contactDesc">I am currently open to new projects. Feel free to reach out via Discord.</p>
-                    
-                    <a href="https://discord.com" target="_blank" class="inline-flex items-center gap-2 text-yellow-500 hover:text-white transition-colors text-lg">
-                        <span class="font-bold">Discord:</span> <span>dr_waltz</span>
-                    </a>
-                 </div>
-            </section>
-        </main>
-
-        <footer class="text-center pb-8 pt-8 border-t border-white/5">
-            <p class="text-gray-600 font-serif text-sm" data-key="footerText">&copy; 2024 SoloWaltz. All rights reserved.</p>
-        </footer>
-    </div>
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-brand-border text-center">
+        <p class="text-sm text-brand-muted font-mono" data-key="footerText">&copy; 2024 SoloWaltz Engineering. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- TRANSLATION DATA ---
             const translations = {
                 en: {
-                    title: "SoloWaltz",
-                    subtitle: "Roblox Developer & Builder",
-                    experienceDesc: "\"Dedicated to creating immersive experiences through clean logic and detailed world-building.\"",
-                    skillsTitle: "Core Expertise",
-                    skill1: "Custom Systems Architecture",
-                    skill2: "Game Optimization",
-                    skill3: "Development Tools",
-                    skill4: "Core Mechanics",
-                    skill5: "Environmental Design",
-                    skill6: "User Interface Design",
+                    musicBtn: "Audio",
+                    langBtn: "Español",
+                    heroBadge: "Accepting Private Commissions",
+                    heroTitle1: "Engineering",
+                    heroTitle2: "Exclusive",
+                    heroTitle3: "Roblox Experiences.",
+                    heroDesc: "Premium software architecture and highly optimized mechanics. Designed for scale, performance, and elite clientele.",
+                    btnProjects: "Explore Architecture",
+                    btnContact: "Consult via Discord",
+                    bentoHeader: "Core Engineering",
+                    bentoTitle1: "Scalable Frameworks",
+                    bentoDesc1: "Modular codebases built with modern Luau, ensuring your game logic can grow without accruing technical debt.",
+                    bentoTitle2: "Engine Optimization",
+                    bentoDesc2: "Deep memory profiling and rendering optimizations to hit that flawless 60 FPS mark.",
+                    bentoTitle3: "Secure Infrastructure",
+                    bentoDesc3: "Strict server-authoritative logic. Designing networks that inherently reject exploits and unauthorized state changes.",
+                    projectsHeader: "Technical Showcase",
                     proj1Title: "Platformer System",
-                    proj1Desc: "A robust movement system designed for precision and agility.",
-                    proj2Title: "Untitled Game",
-                    proj2Desc: "A modern prototype currently in active development.",
-                    proj3Title: "Hunt",
-                    proj3Desc: "A visual showcase focusing on particle effects and pursuit mechanics.",
-                    proj4Title: "Grip Test",
-                    proj4Desc: "Foundational work on interaction systems.",
-                    proj5Title: "Dream Test",
-                    proj5Desc: "An atmospheric recreation of a surreal environment.",
-                    playBtn: "View Project",
-                    pricingHeader: "Commissions",
-                    pricingDesc1: "Rates depend on project complexity.",
-                    contactHeader: "Get in Touch",
-                    contactDesc: "I am currently open to new projects. Feel free to reach out via Discord.",
-                    footerText: "&copy; 2024 SoloWaltz. All rights reserved.",
-                    langBtn: "Español"
+                    proj1Desc: "High-precision movement architecture featuring custom physics calculations.",
+                    proj2Title: "Project Nebula",
+                    proj2Desc: "Confidential next-gen prototype focusing on scalable state management.",
+                    proj3Title: "The Hunt",
+                    proj3Desc: "Dynamic particle systems and complex pursuit logic optimization.",
+                    proj4Title: "Somnium Env.",
+                    proj4Desc: "Atmospheric rendering and surreal lighting studies within the engine.",
+                    pricingHeader: "Premium Engagement",
+                    pricingSubtitle: "Base project inception & architecture",
+                    pricingF1: "Bespoke System Architecture",
+                    pricingF2: "Fully Documented Codebase",
+                    pricingF3: "Exclusive Intellectual Property",
+                    pricingF4: "Direct Discord Communication",
+                    btnContact2: "Secure your project (dr_waltz)",
+                    footerText: "&copy; 2024 SoloWaltz Engineering. All rights reserved."
                 },
                 es: {
-                    title: "SoloWaltz",
-                    subtitle: "Desarrollador y Builder Roblox",
-                    experienceDesc: "\"Dedicado a crear experiencias inmersivas a través de lógica limpia y construcción detallada.\"",
-                    skillsTitle: "Experiencia Principal",
-                    skill1: "Arquitectura de Sistemas",
-                    skill2: "Optimización de Juegos",
-                    skill3: "Herramientas de Desarrollo",
-                    skill4: "Mecánicas Centrales",
-                    skill5: "Diseño de Entornos",
-                    skill6: "Diseño de Interfaz",
+                    musicBtn: "Audio",
+                    langBtn: "English",
+                    heroBadge: "Aceptando Comisiones Privadas",
+                    heroTitle1: "Ingeniería de",
+                    heroTitle2: "Experiencias",
+                    heroTitle3: "Exclusivas en Roblox.",
+                    heroDesc: "Arquitectura de software premium y mecánicas altamente optimizadas. Diseñado para escalar, rendir y para clientes de élite.",
+                    btnProjects: "Explorar Arquitectura",
+                    btnContact: "Consultar vía Discord",
+                    bentoHeader: "Ingeniería Core",
+                    bentoTitle1: "Marcos Escalables",
+                    bentoDesc1: "Bases de código modulares construidas con Luau moderno, asegurando que tu lógica pueda crecer sin deuda técnica.",
+                    bentoTitle2: "Optimización de Motor",
+                    bentoDesc2: "Análisis profundo de memoria y optimizaciones de renderizado para alcanzar los 60 FPS sin problemas.",
+                    bentoTitle3: "Infraestructura Segura",
+                    bentoDesc3: "Lógica autoritativa del servidor estricta. Diseñando redes que rechazan exploits de forma inherente.",
+                    projectsHeader: "Muestra Técnica",
                     proj1Title: "Sistema de Plataformas",
-                    proj1Desc: "Un sistema de movimiento robusto diseñado para precisión y agilidad.",
-                    proj2Title: "Juego Sin Título",
-                    proj2Desc: "Un prototipo moderno actualmente en desarrollo activo.",
-                    proj3Title: "Cazar",
-                    proj3Desc: "Una muestra visual enfocada en efectos de partículas y mecánicas de persecución.",
-                    proj4Title: "Prueba de Agarre",
-                    proj4Desc: "Trabajo fundamental en sistemas de interacción.",
-                    proj5Title: "Prueba de Sueño",
-                    proj5Desc: "Una recreación atmosférica de un entorno surrealista.",
-                    playBtn: "Ver Proyecto",
-                    pricingHeader: "Comisiones",
-                    pricingDesc1: "Tarifas dependen de la complejidad.",
-                    contactHeader: "Contacto",
-                    contactDesc: "Actualmente estoy disponible para nuevos proyectos. Contáctame vía Discord.",
-                    footerText: "&copy; 2024 SoloWaltz. Todos los derechos reservados.",
-                    langBtn: "English"
+                    proj1Desc: "Arquitectura de movimiento de alta precisión con cálculos de físicas personalizados.",
+                    proj2Title: "Proyecto Nebula",
+                    proj2Desc: "Prototipo confidencial enfocado en el manejo de estado escalable.",
+                    proj3Title: "La Caza",
+                    proj3Desc: "Sistemas de partículas dinámicos y optimización compleja de lógica de persecución.",
+                    proj4Title: "Entorno Somnium",
+                    proj4Desc: "Estudios de renderizado atmosférico e iluminación surrealista dentro del motor.",
+                    pricingHeader: "Compromiso Premium",
+                    pricingSubtitle: "Inicio de proyecto base y arquitectura",
+                    pricingF1: "Arquitectura de Sistemas a Medida",
+                    pricingF2: "Código Completamente Documentado",
+                    pricingF3: "Propiedad Intelectual Exclusiva",
+                    pricingF4: "Comunicación Directa por Discord",
+                    btnContact2: "Asegura tu proyecto (dr_waltz)",
+                    footerText: "&copy; 2024 SoloWaltz Engineering. Todos los derechos reservados."
                 }
             };
             let currentLanguage = 'en';
 
             // --- ELEMENTS ---
             const music = document.getElementById('background-music');
+            const langToggleButton = document.getElementById('lang-toggle');
+            const musicToggleButton = document.getElementById('music-toggle');
+            const musicIcon = document.getElementById('music-icon');
             
             // --- TRANSLATION FUNCTION ---
             const setLanguage = (lang) => {
@@ -351,6 +410,25 @@
                     }
                 });
             };
+
+            langToggleButton.addEventListener('click', () => {
+                currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
+                setLanguage(currentLanguage);
+            });
+
+            // --- AUDIO CONTROLS ---
+            musicToggleButton.addEventListener('click', () => {
+                if (music.paused) {
+                    music.volume = 0.2; 
+                    music.play();
+                    musicToggleButton.classList.add('text-brand-accent');
+                    musicIcon.classList.add('animate-pulse');
+                } else {
+                    music.pause();
+                    musicToggleButton.classList.remove('text-brand-accent');
+                    musicIcon.classList.remove('animate-pulse');
+                }
+            });
 
             // --- AVATAR FETCH ---
             async function fetchRobloxAvatar(userId, retries = 3) {
@@ -373,34 +451,18 @@
                 }
             }
 
-            // Start avatar fetch immediately
             fetchRobloxAvatar('1078236215');
 
-            // --- UI CONTROLS ---
-            const musicToggleButton = document.getElementById('music-toggle');
-            const playIcon = document.getElementById('play-icon');
-            const pauseIcon = document.getElementById('pause-icon');
-            const langToggleButton = document.getElementById('lang-toggle');
-            
-            musicToggleButton.addEventListener('click', () => {
-                if (music.paused) {
-                    music.volume = 0.3; // Set decent volume
-                    music.play();
-                    playIcon.classList.add('hidden');
-                    pauseIcon.classList.remove('hidden');
+            // --- NAV SCROLL EFFECT ---
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 20) {
+                    nav.classList.add('shadow-sm');
                 } else {
-                    music.pause();
-                    playIcon.classList.remove('hidden');
-                    pauseIcon.classList.add('hidden');
+                    nav.classList.remove('shadow-sm');
                 }
-            });
-
-            langToggleButton.addEventListener('click', () => {
-                currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
-                setLanguage(currentLanguage);
             });
         });
     </script>
-
 </body>
 </html>
