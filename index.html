@@ -373,20 +373,23 @@
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
+        // Lista de videos controlada manualmente por JS
+        var videoList = ['q5uBce7oecg', 'JBElaXhZ4xQ', 'jtg_7GBYUM4', 'g9gaAglqnRQ', 'fNbQFN7o_sw'];
+        var currentVideo = 0;
+
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
-                videoId: 'q5uBce7oecg', // Primer video
+                videoId: videoList[currentVideo], // Cargar el primer video
                 playerVars: {
                     'autoplay': 1,
                     'mute': 1,
-                    'loop': 1,
                     'controls': 0,
                     'showinfo': 0,
                     'rel': 0,
                     'modestbranding': 1,
                     'playsinline': 1,
-                    'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4,g9gaAglqnRQ,q5uBce7oecg,fNbQFN7o_sw', // Lista de reproducción actualizada con los nuevos videos
-                    'vq': 'hd1080' // Solicitar alta calidad 1080p desde la URL
+                    'disablekb': 1 // Deshabilitar teclado para evitar interacciones accidentales
+                    // NOTA: Eliminamos 'loop' y 'playlist'. Ahora JS hace el trabajo limpio.
                 },
                 events: {
                     'onReady': onPlayerReady,
@@ -405,6 +408,20 @@
             // Cada vez que cambia de video y empieza a reproducir, forzar la máxima calidad
             if (event.data == YT.PlayerState.PLAYING) {
                 event.target.setPlaybackQuality('hd1080');
+            }
+            
+            // MÁGIA AQUÍ: Cuando el video termina, cargamos el siguiente manualmente
+            if (event.data == YT.PlayerState.ENDED) {
+                currentVideo++;
+                // Si llegamos al final de la lista, volvemos al principio
+                if (currentVideo >= videoList.length) {
+                    currentVideo = 0;
+                }
+                // Cargar el nuevo video de forma individual y silenciosa
+                player.loadVideoById({
+                    'videoId': videoList[currentVideo],
+                    'suggestedQuality': 'hd1080'
+                });
             }
         }
     </script>
