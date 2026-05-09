@@ -63,8 +63,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Navegación Glassmorphism */
-        .glass-nav {
+        /* Navegación Glassmorphism (al hacer scroll) */
+        .nav-scrolled {
             background: rgba(252, 252, 252, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -111,7 +111,7 @@
     <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/End_Credits_Music_Cyberpunk_2077_w7ho9h.mp3" loop></audio>
 
     <!-- NAVEGACIÓN -->
-    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+    <nav class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3 text-brand-text font-bold tracking-tight text-xl">
                 <div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white text-sm">
@@ -366,17 +366,27 @@
                     'rel': 0,
                     'modestbranding': 1,
                     'playsinline': 1,
-                    'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4' // Lista de reproducción (los otros dos)
+                    'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4', // Lista de reproducción (los otros dos)
+                    'vq': 'hd1080' // Solicitar alta calidad 1080p desde la URL
                 },
                 events: {
-                    'onReady': onPlayerReady
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
                 }
             });
         }
 
         function onPlayerReady(event) {
             event.target.mute(); // Asegurar doblemente que está silenciado
+            event.target.setPlaybackQuality('hd1080'); // Sugerir calidad HD a la API
             event.target.playVideo(); // Forzar la reproducción automática
+        }
+
+        function onPlayerStateChange(event) {
+            // Cada vez que cambia de video y empieza a reproducir, forzar la máxima calidad
+            if (event.data == YT.PlayerState.PLAYING) {
+                event.target.setPlaybackQuality('hd1080');
+            }
         }
     </script>
 
@@ -519,9 +529,11 @@
             window.addEventListener('scroll', () => {
                 const nav = document.querySelector('nav');
                 if (window.scrollY > 20) {
-                    nav.classList.add('shadow-sm');
+                    nav.classList.add('nav-scrolled', 'shadow-sm');
+                    nav.classList.remove('border-transparent');
                 } else {
-                    nav.classList.remove('shadow-sm');
+                    nav.classList.remove('nav-scrolled', 'shadow-sm');
+                    nav.classList.add('border-transparent');
                 }
             });
         });
