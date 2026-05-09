@@ -107,9 +107,6 @@
 </head>
 <body class="antialiased selection:bg-brand-accent selection:text-white">
 
-    <!-- Elemento de Audio -->
-    <audio id="background-music" src="https://res.cloudinary.com/dsfthqppb/video/upload/End_Credits_Music_Cyberpunk_2077_w7ho9h.mp3" loop></audio>
-
     <!-- NAVEGACIÓN -->
     <nav class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -121,11 +118,6 @@
             </div>
             
             <div class="flex gap-6 text-sm font-medium items-center text-brand-muted">
-                <button id="music-toggle" class="hover:text-brand-accent transition-colors flex items-center gap-2">
-                    <svg id="music-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                    <span data-key="musicBtn" class="hidden sm:inline">Audio</span>
-                </button>
-                <div class="w-px h-4 bg-brand-border"></div>
                 <button id="lang-toggle" data-key="langBtn" class="hover:text-brand-accent transition-colors">Español</button>
             </div>
         </div>
@@ -232,6 +224,48 @@
         </div>
     </section>
 
+    <!-- NUEVA SECCIÓN: EL ARQUITECTO (PERFIL) -->
+    <section id="about" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-brand-text" data-key="aboutHeader">The Architect</h2>
+            <div class="h-px bg-brand-border flex-grow ml-8"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Bio & Background -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm md:col-span-2 flex flex-col md:flex-row gap-8 items-start">
+                <div class="w-14 h-14 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center text-brand-accent shrink-0">
+                    <!-- Icono CPU / Robótica -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3" data-key="aboutBioTitle">Profile & Background</h3>
+                    <p class="text-brand-muted leading-relaxed" data-key="aboutBioDesc">At 20 years old, I bring 6 years of continuous, deep-level experience within the Roblox Studio engine. With technical training in Robotics-Oriented Programming, I apply structured, highly logical architecture to game development, operating as a dedicated full-time professional to guarantee elite results.</p>
+                </div>
+            </div>
+
+            <!-- VFX & Game Feel -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col">
+                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                    <!-- Icono Rayo / VFX -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3" data-key="aboutVfxTitle">VFX & Game Feel</h3>
+                <p class="text-brand-muted" data-key="aboutVfxDesc">Visual Effects (VFX) design with a strong focus on "game feel". Creating "juicy", highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.</p>
+            </div>
+
+            <!-- Full-Stack & Frameworks -->
+            <div class="tech-card bg-white p-8 rounded-2xl border border-brand-border shadow-sm flex flex-col">
+                <div class="w-12 h-12 bg-slate-50 border border-brand-border rounded-xl flex items-center justify-center mb-6 text-brand-accent">
+                    <!-- Icono Capas / Stack -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3" data-key="aboutTechTitle">Full-Stack & Frameworks</h3>
+                <p class="text-brand-muted" data-key="aboutTechDesc">Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN DE PROYECTOS -->
     <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
         <div class="mb-12 flex items-center justify-between">
@@ -242,12 +276,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <!-- Proyecto 1 -->
-            <a href="https://www.roblox.com/es/games/132631447781977/sped#!/game-instances" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+            <a href="https://www.roblox.com/es/games/102037299036175/Platmformer-Game" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj1Title">Platformer System</h3>
                     <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
                 </div>
-                <p class="text-brand-muted text-sm mb-6" data-key="proj1Desc">High-precision movement architecture featuring custom physics calculations.</p>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj1Desc">Advanced platformer movement architecture.</p>
                 <div class="flex gap-2 font-mono text-xs">
                     <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Luau</span>
                     <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Kinematics</span>
@@ -255,41 +289,15 @@
             </a>
 
             <!-- Proyecto 2 -->
-            <a href="https://www.roblox.com/games/13696371563/Juego-sin-nombre" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
+            <a href="https://www.roblox.com/es/games/90646300024435/test" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj2Title">Project Nebula</h3>
+                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj2Title">Simple Experiment</h3>
                     <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
                 </div>
-                <p class="text-brand-muted text-sm mb-6" data-key="proj2Desc">Confidential next-gen prototype focusing on scalable state management.</p>
+                <p class="text-brand-muted text-sm mb-6" data-key="proj2Desc">This is a simple, non-complex experiment.</p>
                 <div class="flex gap-2 font-mono text-xs">
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Framework</span>
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Networking</span>
-                </div>
-            </a>
-
-            <!-- Proyecto 3 -->
-            <a href="https://www.roblox.com/games/10457493046/cazar" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj3Title">The Hunt</h3>
-                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
-                </div>
-                <p class="text-brand-muted text-sm mb-6" data-key="proj3Desc">Dynamic particle systems and complex pursuit logic optimization.</p>
-                <div class="flex gap-2 font-mono text-xs">
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">AI Logic</span>
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">VFX</span>
-                </div>
-            </a>
-
-            <!-- Proyecto 4 -->
-            <a href="https://www.roblox.com/games/90646300024435/test" target="_blank" class="tech-card block bg-white p-8 rounded-2xl border border-brand-border shadow-sm group">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold group-hover:text-brand-accent transition-colors" data-key="proj4Title">Somnium Env.</h3>
-                    <span class="text-brand-border group-hover:text-brand-accent transition-colors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
-                </div>
-                <p class="text-brand-muted text-sm mb-6" data-key="proj4Desc">Atmospheric rendering and surreal lighting studies within the engine.</p>
-                <div class="flex gap-2 font-mono text-xs">
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Lighting</span>
-                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Environment</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Experimental</span>
+                    <span class="px-2 py-1 bg-slate-50 border border-brand-border rounded text-slate-600">Test</span>
                 </div>
             </a>
 
@@ -367,7 +375,7 @@
                     'rel': 0,
                     'modestbranding': 1,
                     'playsinline': 1,
-                    'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4,g9gaAglqnRQ,0uuJoXVccRA', // Lista de reproducción (los otros)
+                    'playlist': 'JBElaXhZ4xQ,jtg_7GBYUM4,g9gaAglqnRQ', // Lista de reproducción sin el video removido
                     'vq': 'hd1080' // Solicitar alta calidad 1080p desde la URL
                 },
                 events: {
@@ -396,7 +404,6 @@
             // --- DATOS DE TRADUCCIÓN ---
             const translations = {
                 en: {
-                    musicBtn: "Audio",
                     langBtn: "Español",
                     heroBadge: "Accepting Private Commissions",
                     heroTitle1: "Engineering",
@@ -412,15 +419,18 @@
                     bentoDesc2: "Deep memory profiling and rendering optimizations to hit that flawless 60 FPS mark.",
                     bentoTitle3: "Secure Infrastructure",
                     bentoDesc3: "Strict server-authoritative logic. Designing networks that inherently reject exploits and unauthorized state changes.",
+                    aboutHeader: "The Architect",
+                    aboutBioTitle: "Profile & Background",
+                    aboutBioDesc: "At 20 years old, I bring 6 years of continuous, deep-level experience within the Roblox Studio engine. With technical training in Robotics-Oriented Programming, I apply structured, highly logical architecture to game development, operating as a dedicated full-time professional to guarantee elite results.",
+                    aboutVfxTitle: "VFX & Game Feel",
+                    aboutVfxDesc: "Visual Effects (VFX) design with a strong focus on 'game feel'. Creating 'juicy', highly responsive visual feedback that elevates player impact, satisfaction, and overall immersion.",
+                    aboutTechTitle: "Full-Stack & Frameworks",
+                    aboutTechDesc: "Comprehensive development across Front-End (UI/UX) and Back-End server logic. Absolute proficiency in modern, industry-standard frameworks like Knit, Warp, and ProfileService.",
                     projectsHeader: "Technical Showcase",
                     proj1Title: "Platformer System",
-                    proj1Desc: "High-precision movement architecture featuring custom physics calculations.",
-                    proj2Title: "Project Nebula",
-                    proj2Desc: "Confidential next-gen prototype focusing on scalable state management.",
-                    proj3Title: "The Hunt",
-                    proj3Desc: "Dynamic particle systems and complex pursuit logic optimization.",
-                    proj4Title: "Somnium Env.",
-                    proj4Desc: "Atmospheric rendering and surreal lighting studies within the engine.",
+                    proj1Desc: "Advanced platformer movement architecture.",
+                    proj2Title: "Simple Experiment",
+                    proj2Desc: "This is a simple, non-complex experiment.",
                     pricingHeader: "Premium Engagement",
                     pricingSubtitle: "Base project inception & architecture",
                     pricingF1: "Bespoke System Architecture",
@@ -431,7 +441,6 @@
                     footerText: "&copy; 2024 SoloWaltz Engineering. All rights reserved."
                 },
                 es: {
-                    musicBtn: "Audio",
                     langBtn: "English",
                     heroBadge: "Aceptando Comisiones Privadas",
                     heroTitle1: "Ingeniería de",
@@ -447,15 +456,18 @@
                     bentoDesc2: "Análisis profundo de memoria y optimizaciones de renderizado para alcanzar los 60 FPS sin problemas.",
                     bentoTitle3: "Infraestructura Segura",
                     bentoDesc3: "Lógica autoritativa del servidor estricta. Diseñando redes que rechazan exploits de forma inherente.",
+                    aboutHeader: "El Arquitecto",
+                    aboutBioTitle: "Perfil y Trayectoria",
+                    aboutBioDesc: "A mis 20 años de edad, aporto 6 años de experiencia continua en el motor de Roblox Studio. Con formación técnica en Programación Orientada a la Robótica, aplico una lógica altamente estructurada al desarrollo de juegos, operando como un profesional a tiempo completo para garantizar resultados de élite.",
+                    aboutVfxTitle: "VFX y Game Feel",
+                    aboutVfxDesc: "Diseño de efectos visuales (VFX) con un fuerte enfoque en el 'game feel'. Creando experiencias 'juicy' y altamente responsivas que elevan el impacto, la satisfacción y la inmersión del jugador.",
+                    aboutTechTitle: "Full-Stack y Frameworks",
+                    aboutTechDesc: "Desarrollo integral tanto en Front-End (UI/UX) como en la lógica de servidores Back-End. Dominio absoluto de frameworks modernos y estándares de la industria como Knit, Warp y ProfileService.",
                     projectsHeader: "Muestra Técnica",
                     proj1Title: "Sistema de Plataformas",
-                    proj1Desc: "Arquitectura de movimiento de alta precisión con cálculos de físicas personalizados.",
-                    proj2Title: "Proyecto Nebula",
-                    proj2Desc: "Prototipo confidencial enfocado en el manejo de estado escalable.",
-                    proj3Title: "La Caza",
-                    proj3Desc: "Sistemas de partículas dinámicos y optimización compleja de lógica de persecución.",
-                    proj4Title: "Entorno Somnium",
-                    proj4Desc: "Estudios de renderizado atmosférico e iluminación surrealista dentro del motor.",
+                    proj1Desc: "Movimiento avanzado de plataformas.",
+                    proj2Title: "Experimento de Prueba",
+                    proj2Desc: "Este es un experimento nada complejo.",
                     pricingHeader: "Compromiso Premium",
                     pricingSubtitle: "Inicio de proyecto base y arquitectura",
                     pricingF1: "Arquitectura de Sistemas a Medida",
@@ -469,10 +481,7 @@
             let currentLanguage = 'en';
 
             // --- ELEMENTOS ---
-            const music = document.getElementById('background-music');
             const langToggleButton = document.getElementById('lang-toggle');
-            const musicToggleButton = document.getElementById('music-toggle');
-            const musicIcon = document.getElementById('music-icon');
             
             // --- FUNCIÓN DE TRADUCCIÓN ---
             const setLanguage = (lang) => {
@@ -487,20 +496,6 @@
             langToggleButton.addEventListener('click', () => {
                 currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
                 setLanguage(currentLanguage);
-            });
-
-            // --- CONTROLES DE AUDIO ---
-            musicToggleButton.addEventListener('click', () => {
-                if (music.paused) {
-                    music.volume = 0.2; 
-                    music.play();
-                    musicToggleButton.classList.add('text-brand-accent');
-                    musicIcon.classList.add('animate-pulse');
-                } else {
-                    music.pause();
-                    musicToggleButton.classList.remove('text-brand-accent');
-                    musicIcon.classList.remove('animate-pulse');
-                }
             });
 
             // --- PETICIÓN DE AVATAR ---
